@@ -90,16 +90,16 @@ $app->get("/extension", function ($request, $response) use ($container) {
 });
 
 $app->get("/telemedicina", function ($request, $response) {
-    /*$count = \Illuminate\Database\Capsule\Manager::connection("db_telemedicina")
+    $count = \Illuminate\Database\Capsule\Manager::connection("db_telemedicina")
         ->table("notaclinica")
         ->get();
     dump($count);
-    */
+    /*
 
     $dbconn = pg_connect("host=104.154.151.200 port=5432 dbname=LivingLabTransaccional user=UserBDAnalitics password=123456 options='--client_encoding=UTF8'")
         or die ("No se pudo conectar: " . pg_last_error());
 
-
+*/
 });
 $app->get("/test", function ($request, $response) {
   return $this->view->render($response, "form.twig");
