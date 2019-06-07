@@ -58,7 +58,7 @@ return [
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
-            'sslmode' => 'require',
+            'sslmode' => 'allow',
             'port' => getenv("DB_PORT_TELEMEDICINA"),
             'options' => [\PDO::ATTR_EMULATE_PREPARES => true],
         ]
