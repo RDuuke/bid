@@ -1,0 +1,20 @@
+{% extends "template/template_login.twig" %}
+{% block content %}
+    <div class="ed-item s-100 l-50 flex">
+        <div class="ed-item ed-container full">
+            <div class="ed-item s-100 l-cross-center">
+                <img src="{{ base_url() }}/images/logos.png" alt="">
+            </div>
+            <div class="ed-item s-100">
+                <form id="form-login" action="{{ path_for("sing") }}" method="post" class="flex s-column s-cross-center">
+                    <input type="text" class="input large" placeholder="Usuario" name="username" required>
+                    <input type="password" class="input large" placeholder="********" name="password" required>
+                    <button class="btn green">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="ed-item s-100 l-50 l-cross-center">
+        <img src="{{ base_url() }}/images/banner.png" alt="">
+    </div>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends "template/template.twig" %}
+{% block style %}
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/loading-bar.css">
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/range-chart.css">
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/c3.min.css">
+{% endblock %}
+{% block content %}
+        <div class="ed-item s-100">
+            <h2 class="color-white">Teleducación</h2>
+        </div>
+        <div class="ed-item s-100 l-50 bg-white-transparent text-center color-white fit-content">
+            <h3 class="text-center color-white p-v-1em title-home">Número de contenidos educativos desarrollados para la capacitación de profesionales de la salud</h3>
+            <div class="ed-container">
+                <div class="ed-item s-100 l-50">
+                    <div id="chart"></div>
+                </div>
+                <div class="ed-item s-100 l-50 text-center">
+                    <h3 class="meta">Meta total</h3>
+                    <h3 class="meta-numero">{{ indicador2.meta }}</h3>
+                    <div class="ed-container s-100 m-2em-b">
+                        <div class="ed-item s-100 l-50 flex justify-flex-end">
+                            <div class="porcentaje">{{ indicador2.porcentaje < 100 ? indicador2.porcentaje : 100 }}%</div>
+                        </div>
+                        <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
+                            <p class="p-absolute">Cumplimiento</p>
+                        </div>
+
+                    </div>
+                    <a href="{{ path_for('teleducacion.indicador.2') }}" class="btn deg-yellow">Más información</a>
+                </div>
+            </div>
+            <div class="flex l-cross-center l-justify-center p-v-2em">
+                <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
+            </div>
+        </div>
+        <div class="ed-item s-100 l-50  bg-white-transparent text-center color-white fit-content">
+            <h3 class="text-center color-white p-v-1em title-home">Número de interacciones en plataforma de Teleducación</h3>
+            <div class="ed-container">
+                <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center">
+                    <h3>{{ indicador3.total }}</h3>
+                    <div class="range big" data-max="{{ indicador3.meta }}" data-valor="{{ indicador3.total }}" data-background="#60B044" style="width: 90%" data-label="Meta total"></div>
+                </div>
+                <div class="ed-item s-100 l-50 text-center">
+                    <h3 class="meta">Meta total</h3>
+                    <h3 class="meta-numero">{{ indicador3.meta }}</h3>
+                    <div class="ed-container s-100 m-2em-b">
+                        <div class="ed-item s-100 l-50 flex justify-flex-end">
+                            <div class="porcentaje">{{ indicador3.porcentaje < 100 ? indicador3.porcentaje : 100 }}%</div>
+                        </div>
+                        <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
+                            <p class="p-absolute">Cumplimiento</p>
+                        </div>
+
+                    </div>
+                    <a href="{{ path_for('teleducacion.indicador.3') }}" class="btn deg-yellow ">Más información</a>
+                </div>
+            </div>
+            <div class="flex l-cross-center l-justify-center p-v-2em">
+                <p style="margin: 0">Fecha ultima actualización: {{ created_at | date("Y-m-d") }}</p>
+            </div>
+        </div>
+    <div class="ed-item s-100 bg-white-transparent color-white text-center fit-content">
+        <h3 class="text-center color-white p-v-1em title-home">Número de profesionales de la salud capacitados</h3>
+        <div class="ed-container">
+            <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center l-column">
+                <h3 class="meta-numero text-left">{{ indicador1.total }}</h3>
+                <div class="range big" data-max="{{ indicador1.meta }}" data-valor="{{ indicador1.total }}" data-background="#60B044" style="width: 90%" data-label="Meta total"></div>
+            </div>
+            <div class="ed-item s-100 l-50 text-center">
+                <h3 class="meta">Meta total</h3>
+                <h3 class="meta-numero">{{ indicador1.meta }}</h3>
+                <div class="ed-container s-100 m-2em-b">
+                    <div class="ed-item s-100 l-50 flex justify-flex-end">
+                        <div class="porcentaje">{{ indicador1.porcentaje < 100 ? indicador1.porcentaje : 100 }}%</div>
+                    </div>
+                    <div class="ed-item s-100 l-50 p-relative flex justify-end align-center">
+                        <p class="p-absolute">Cumplimiento</p>
+                    </div>
+                </div>
+                <a href="{{ path_for('teleducacion.indicador.1') }}" class="btn deg-yellow">Más información</a>
+            </div>
+        </div>
+        <div class="flex l-cross-center l-justify-center p-v-2em">
+            <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ base_url() }}/js/lib/loading-bar.js"></script>
+<script src="{{ base_url() }}/js/lib/range-chart.js"></script>
+<script src="{{ base_url() }}/js/lib/d3-5.8.2.min.js"></script>
+<script src="{{ base_url() }}/js/lib/c3.min.js"></script>
+
+<script >
+var chart = c3.generate({
+    data: {
+        columns: [
+            ['Número de cursos realizados', {{ indicador2.total }}]
+        ],
+        type: 'gauge',
+    },
+    gauge: {
+        max: {{ indicador2.meta }},
+        label: {
+           format: function(value, ratio) {
+                return value;
+            },
+            show: false // to turn off the min/max labels.
+       },
+    },
+    color: {
+        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+        threshold: {
+//            unit: 'value', // percentage is default
+//            max: 200, // 100 is default
+            values: [3, 5, 10, 15],
+        }
+    },
+    axis : {
+      y : {
+          show : false
+      }
+    },
+    size: {
+        height: 180
+    },
+    tooltip : {
+        contents : function(d) {
+            return "<div>"+d[0].value+"</div>";
+        }
+    }
+});
+</script>
+{% endblock %}

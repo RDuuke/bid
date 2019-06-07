@@ -1,0 +1,25 @@
+{% extends "template/template.twig" %}
+{% block content %}
+    <div class="ed-item s-100 bg-white p-all-2rem">
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Fecha de creación</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for c in courses %}
+                <tr>
+                    <td>{{ c.codigo }}</td>
+                    <td>{{ c.nombre }}</td>
+                    <td>{{ c.fecha }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}

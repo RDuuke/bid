@@ -1,0 +1,63 @@
+{% extends "template/template.twig" %}
+{% block style %}
+    <style href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></style>
+{% endblock %}
+{% block content %}
+    <div class="ed-item s-100 bg-white p-all-2rem">
+        <div class="ed-container">
+            <div class="ed-item s-100 l-70">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="ed-item s-100 l-30">
+                <table>
+                    <tbody>
+                    {% set i = 0 %}
+                    {% for a in origen %}
+                        <tr>
+                            <td>
+                                {{ a }}
+                            </td>
+                            <td>{{ values[i] }}</td>
+                        </tr>
+                        {% set i = i + 1 %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script>
+
+    window.onload = function() {
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        var labels = {{ (origen | json_encode | raw) }};
+        var values = {{ (values | json_encode | raw) }};
+
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'horizontalBar',
+
+                // The data for our dataset
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Interacciones Teleducación',
+                        backgroundColor: "#4285F4",
+                        borderColor: '#fce61d',
+                        data: values,
+                        pointBorderColor: "black",
+                        pointBorderWidth : 20
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+        };
+    </script>
+{% endblock %}

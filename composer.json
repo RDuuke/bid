@@ -1,0 +1,27 @@
+{
+    "name": "rduuke/dashboard-bid",
+    "authors": [
+        {
+            "name": "RDuuke",
+            "email": "juuanduuke@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.12",
+        "slim/twig-view": "^2.5",
+        "illuminate/database": "~5.1",
+        "slim/flash": "^0.4.0",
+        "vlucas/phpdotenv": "^3.3",
+        "phpoffice/phpspreadsheet": "^1.6",
+        "kanellov/slim-twig-flash": "^0.2.0"
+    },
+    "require-dev": {
+        "fzaninotto/faker" : "1.8.0",
+        "symfony/var-dumper": "v3.4.27"
+    },
+    "autoload" : {
+        "psr-4": {
+            "Bid\\" : "src/"
+        }
+    }
+}

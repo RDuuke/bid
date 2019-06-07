@@ -1,0 +1,22 @@
+.alert
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    padding: 1em;
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.alert p {
+    margin: 0 ;
+}
+.danger {
+    background-color: var(--red);
+    color: white;
+}
+.success {
+    background-color: var(--degrade-g-bottom);
+    color: white;
+}

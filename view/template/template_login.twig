@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title ? title : "DIB - UDEA" }}</title>
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/normalize.css">
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/ed-grid.min.css">
+    <link rel="stylesheet" href="{{ base_url() }}/css/template.css">
+    {% block style %}{% endblock %}
+</head>
+<body>
+<div class="ed-container" id="content">
+    {% block content %}{% endblock %}
+</div>
+<footer>
+    <div class="ed-container">
+        <div class="ed-item s-100 text-right">
+            <small>Creado por la Facultad de Medicina de la Universidad de Antioquia</small>
+        </div>
+    </div>
+</footer>
+{% block javascript %}{% endblock %}
+<script src="{{ base_url() }}/js/template.js"></script>
+</body>
+</html>

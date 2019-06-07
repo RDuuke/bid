@@ -1,0 +1,40 @@
+{% extends "template/template.twig" %}
+{% block style %}
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/loading-bar.css">
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/range-chart.css">
+{% endblock %}
+{% block content %}
+    <div class="ed-tiem s-100 bg-white p-all-2rem fill-content">
+        <a href="{{ path_for('panel') }}" class="btn deg-yellow">Volver</a>
+        <a href="{{ path_for('panel.user.create') }}" class="btn deg-green">Agregar</a>
+        <br>
+        <br>
+        <table class="full" cellpadding="0" cellspacing="0" >
+            <thead>
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Username</th>
+                    <th>Programa</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.fullname }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.institution }}</td>
+                        <td>
+                            <a href="{{ path_for('panel.user.edit', { id : user.id}) }}">Editar</a>
+                            <a href="{{ path_for('panel.user.delete', { id: user.id}) }}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script src="{{ base_url() }}/js/modules/user.js"></script>
+{% endblock %}

@@ -1,0 +1,66 @@
+<?php
+return [
+    'settings' => [
+        'determineRouteBeforeAppMiddleware' => false,
+        'displayErrorDetails' => true,
+        'db' => [
+            'driver' => 'mysql',
+            'host' => getenv("DB_HOST"),
+            'database' => getenv("DB_NAME"),
+            'username' => getenv("DB_USER"),
+            'password' => getenv("DB_PASSWORD"),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'options' => [\PDO::ATTR_EMULATE_PREPARES => true],
+        ],
+        'db_extension' => [
+            'driver' => 'mysql',
+            'host' => getenv("DB_HOST_EXTENSION"),
+            'database' => getenv("DB_NAME_EXTENSION"),
+            'username' => getenv("DB_USER_EXTENSION"),
+            'password' => getenv("DB_PASSWORD_EXTENSION"),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'options' => [\PDO::ATTR_EMULATE_PREPARES => true],
+
+        ],
+        'db_abiertas_gestion' => [
+            'driver' => 'mysql',
+            'host' => getenv("DB_HOST_AULAS"),
+            'database' => getenv("DB_NAME_AULAS_GESTION"),
+            'username' => getenv("DB_USER_AULAS"),
+            'password' => getenv("DB_PASSWORD_AULAS"),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'options' => [\PDO::ATTR_EMULATE_PREPARES => true],
+
+        ],
+        'db_abiertas_moodle' => [
+            'driver' => 'mysql',
+            'host' => getenv("DB_HOST_AULAS"),
+            'database' => getenv("DB_NAME_AULAS_MOODLE"),
+            'username' => getenv("DB_USER_AULAS"),
+            'password' => getenv("DB_PASSWORD_AULAS"),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'options' => [\PDO::ATTR_EMULATE_PREPARES => true],
+        ],
+        'db_telemedicina' => [
+            'driver' => 'pgsql',
+            'host' => getenv("DB_HOST_TELEMEDICINA"),
+            'database' => getenv("DB_NAME_TELEMEDICINA"),
+            'username' => getenv("DB_USER_TELEMEDICINA"),
+            'password' => getenv("DB_PASSWORD_TELEMEDICINA"),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'sslmode' => 'require',
+            'port' => getenv("DB_PORT_TELEMEDICINA"),
+            'options' => [\PDO::ATTR_EMULATE_PREPARES => true],
+        ]
+    ],
+];

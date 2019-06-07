@@ -1,0 +1,128 @@
+{% extends "template/template.twig" %}
+{% block style %}
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/c3.min.css">
+{% endblock %}
+{% block content %}
+    <div class="ed-item s-100 bg-white p-all-2rem">
+       <div class="ed-container">
+           <div class="ed-item s-100 p-v-10">
+               <h3 class="text-center">Número de llamadas gestionadas por patologías</h3>
+               <div class="ed-container">
+                   <div class="ed-item s-100 l-50">
+                        <div id="donout_call"></div>
+                   </div>
+                   <div class="ed-item s-100 l-50">
+                       <table>
+                           <tbody>
+                            {% for p in pacientes %}
+                                <tr>
+                                    <td>{{ p[0] }}</td>
+                                    <td>{{ p[1] }}</td>
+                                </tr>
+                            {% endfor %}
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+           </div>
+           <div class="ed-item s-100 p-v-10">
+               <h3 class="text-center">Número de llamadas gestionadas por mes</h3>
+               <div class="ed-container">
+                   <div class="ed-item s-100 l-50">
+                       <div id="bar_call"></div>
+                   </div>
+                   <div class="ed-item s-100 l-50">
+                       <table>
+                           <tbody>
+                           {% for g in gestionadas %}
+                               <tr>
+                                   <td>{{ g[0] }}</td>
+                                   <td>{{ g[1] }}</td>
+                               </tr>
+                           {% endfor %}
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+           </div>
+           <div class="ed-item s-100 p-v-10">
+               <h3 class="text-center">Número de llamadas gestionadas por origen de atención</h3>
+               <div class="ed-container">
+                   <div class="ed-item s-100 l-50">
+                       <div id="donout_call_origen"></div>
+                   </div>
+                   <div class="ed-item s-100 l-50">
+                       <table>
+                           <tbody>
+                           {% for o in origen %}
+                               <tr>
+                                   <td>{{ o[0] }}</td>
+                                   <td>{{ o[1] }}</td>
+                               </tr>
+                           {% endfor %}
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ base_url() }}/js/lib/d3-5.8.2.min.js"></script>
+<script src="{{ base_url() }}/js/lib/c3.min.js"></script>
+
+<script >
+    var donut = c3.generate({
+        bindto: "#donout_call",
+        data: {
+            columns: {{ pacientes | json_encode | raw }},
+            type : 'donut',
+        },
+        donut: {
+            title: "Número de llamadas",
+        },
+        tooltip : {
+            contents : function(d, v, i) {
+                return "<div style='background: #fff;padding:1em;border:1px solid'>Total de llamadas: "+d[0].value+" de "+d[0].id+"</div>";
+            }
+        }
+
+    });
+    var donut = c3.generate({
+        bindto: "#donout_call_origen",
+        data: {
+            columns: {{ origen | json_encode | raw }},
+            type : 'donut',
+        },
+        donut: {
+            title: "Llamadas por origen",
+        },
+        tooltip : {
+            contents : function(d, v, i) {
+                return "<div style='background: #fff;padding:1em;border:1px solid'>Total de llamadas: "+d[0].value+" de "+d[0].id+"</div>";
+            }
+        }
+
+    });
+
+    var bar = c3.generate({
+        bindto: "#bar_call",
+        data: {
+            columns: {{ gestionadas | json_encode | raw }},
+            type : 'bar',
+        },
+        donut: {
+            title: "Número de llamadas gestionadas",
+            label : {
+                format : function(d, v, i) {
+                    return d;
+                }
+            }
+        },
+
+
+    });
+
+</script>
+{% endblock %}

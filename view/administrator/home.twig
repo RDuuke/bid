@@ -1,0 +1,108 @@
+{% extends "template/template.twig" %}
+{% block style %}
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/loading-bar.css">
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/range-chart.css">
+{% endblock %}
+{% block content %}
+    <div class="ed-tiem s-100 bg-white p-all-2rem fill-content">
+        <a href="{{ path_for('panel') }}" class="btn deg-yellow">Volver</a>
+        <a href="{{ path_for('panel.user.list') }}" class="btn deg-green">Usuarios</a>
+        <br>
+        <br>
+        {% if (user.institution == administrador or user.institution == teleducacion) %}
+        <div class="ed-container">
+            <div class="ed-item s-100">
+                <h2>Módulo de Teleducación</h2>
+            </div>
+            <div class="ed-item s-100 l-50">
+                <h3>Cargar archivo de interacciones en plataforma de Teleducación.</h3>
+                <form action="{{ path_for("file.interactions") }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="archive" required>
+                    <br>
+                    <br>
+                    <button class="btn deg-green">Cargar</button>
+                    <div id="response-interaccion"></div>
+                </form>
+            </div>
+            <div class="ed-item s-100 l-50">
+                <h3>Cargar archivo de cursos.</h3>
+                <form action="{{ path_for("file.courses") }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="archive" required>
+                    <br>
+                    <br>
+                    <button class="btn deg-green">Cargar</button>
+                    <div id="response-curso"></div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        {% endif %}
+        {% if (user.institution == administrador or user.institution == teleasistencia) %}
+        <div class="ed-container">
+            <div class="ed-item s-100">
+                <h2>Módulo de teleasistencias</h2>
+            </div>
+            <div class="ed-item s-100 l-50">
+                <h3>Algoritmos de teleasistencia</h3>
+                <form action="{{ path_for('file.algorithms') }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="archive" required>
+                    <br><br>
+                    <button class="btn deg-green">Cargar</button>
+                    <div id="response-algoritmos"></div>
+                </form>
+            </div>
+            <div class="ed-item s-100 l-50">
+                <h3>Pacientes de teleasistencias</h3>
+                <form action="{{ path_for('file.patients') }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="archive" required>
+                    <br><br>
+                    <button class="btn deg-green">Cargar</button>
+                    <div id="response-algoritmos"></div>
+                </form>
+            </div>
+            <div class="ed-item s-100 l-50">
+                <h3>Gestion llamadas de teleasistencias</h3>
+                <form action="{{ path_for('file.call.management') }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="archive" required>
+                    <br><br>
+                    <button class="btn deg-green">Cargar</button>
+                    <div id="response-algoritmos"></div>
+                </form>
+            </div>
+            <div class="ed-item s-100 l-50">
+                <h3>Llamadas patalogía de teleasistencia</h3>
+                <form action="{{ path_for('file.call.pathology') }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="archive" required>
+                    <br><br>
+                    <button class="btn deg-green">Cargar</button>
+                    <div id="response-algoritmos"></div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        {% endif %}
+        {% if data %}
+            <div class="ed-container s-100">
+                <table>
+                    <caption>{{ title_table }}</caption>
+                    <thead>
+                        <tr>
+                            <th>Correctos</th>
+                            <th>Errores</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ data.creators.total }}</td>
+                            <td>{{ data.errors.total }}</td>
+                            <td>{{ (data.creators.total + data.errors.total) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}

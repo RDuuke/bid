@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title ? title : "DIB - UDEA" }}</title>
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/normalize.css">
+    <link rel="stylesheet" href="{{ base_url() }}/css/lib/ed-grid.min.css">
+    <link rel="stylesheet" href="{{ base_url() }}/css/template.css">
+    {% block style %}{% endblock %}
+</head>
+<body>
+<div class="ed-container" id="content">
+    <div class="ed-item s-100 l-40 p-v-10 l-cross-center">
+        <a href="{{ path_for('panel') }}"><img src="{{ base_url() }}/images/logos.png" alt=""></a>
+    </div>
+    <div class="ed-item s-100 l-40 p-v-10 l-cross-center l-main-end">
+        <nav class="menu">
+            {% if auth.institution == telemedicina or auth.institution == administrador %}
+                <a href="{{ path_for('telemedicina.index') }}">Telemedicina</a>
+            {% endif %}
+            {% if auth.institution == teleasistencia or auth.institution == administrador %}
+                <a href="{{ path_for('teleasistencia.index') }}">Teleasistencia</a>
+            {% endif %}
+            {% if auth.institution == teleducacion or auth.institution == administrador %}
+                <a href="{{ path_for('teleducacion.index') }}">Teleducación</a>
+            {% endif %}
+        </nav>
+    </div>
+    <div class="ed-item s-100 l-20 p-v-10 l-cross-center l-main-end">
+        {% if auth.institution == teleducacion or auth.institution == administrador %}
+            <a href="{{ path_for('panel.administrator') }}" class="btn deg-yellow">Administrar</a>
+        {% endif %}
+        <a class="btn sing-out deg-yellow" href="{{ path_for('logout') }}"><img src="{{ base_url() }}/images/sing-out.svg" alt=""></a>
+    </div>
+    {% include 'message/flash.twig' %}
+    {% block content %}{% endblock %}
+</div>
+<footer>
+    <div class="ed-container">
+        <div class="ed-item s-100 text-right">
+            <small>Creado por la Facultad de Medicina de la Universidad de Antioquia</small>
+        </div>
+    </div>
+</footer>
+{% block javascript %}{% endblock %}
+<script src="{{ base_url() }}/js/lib/alert.js"></script>
+<script src="{{ base_url() }}/js/template.js"></script>
+</body>
+</html>

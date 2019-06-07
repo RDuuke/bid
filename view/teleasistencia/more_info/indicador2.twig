@@ -1,0 +1,23 @@
+{% extends "template/template.twig" %}
+{% block content %}
+    <div class="ed-item s-100 bg-white p-all-2rem">
+        <table>
+            <thead>
+            <tr>
+                <th>Patología</th>
+                <th>Número de pacientes</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in patologias %}
+                <tr>
+                    <td>{{ p.patalogia }}</td>
+                    <td>{{ p.num_pacientes }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}

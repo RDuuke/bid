@@ -1,0 +1,50 @@
+.make {
+    position: absolute;
+    width: 15px;
+    background-color: red;
+    height: 15px;
+    border-radius: 50%;
+    top: 3px;
+    border: 1px solid white;
+    z-index: 2;
+}
+.area-paint {
+    height: 10px;
+    background-color: red;
+    border-radius: 10px;
+    z-index: 1;
+}
+.area-total {
+    width: 100%;
+    background-color: #FFFFFF90;
+    padding: 5px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+}
+.area-total .label {
+    align-self: center;
+}
+.label {
+    position: absolute;
+    color: red;
+    z-index: 3;
+    right: 5%;
+    font-size: .7em;
+}
+#range-init
+{
+    width: 100px;
+}
+
+.range.big .area-paint{
+    height: 25px;
+}
+.range.big .make {
+    width: 28px;
+    height: 28px;
+}
+
+.range.big .label{
+    font-size: 1em;
+}

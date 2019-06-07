@@ -1,0 +1,14 @@
+{% if flash('errors') is not empty %}
+    <div class="alert danger" role="alert">
+        {% for msg in flash('errors') %}
+            <p>{{ msg }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+{% if flash('creators') is not empty %}
+    <div class="alert success" role="alert">
+        {% for msg in flash('creators') %}
+            <p>{{ msg }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
