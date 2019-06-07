@@ -92,6 +92,7 @@ $app->get("/extension", function ($request, $response) use ($container) {
 $app->get("/telemedicina", function ($request, $response) {
     $count = \Illuminate\Database\Capsule\Manager::connection("db_telemedicina")
         ->table("notaclinica")
+        ->take(10)
         ->get();
     dump($count);
     /*
