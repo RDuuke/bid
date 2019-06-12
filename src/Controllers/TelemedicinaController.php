@@ -14,7 +14,7 @@ class TelemedicinaController extends Controller
     {
         $id = Tools::telemedicina_indicador_1();
         dump($id->take(10));
-        dump(json_decode(json_encode($id->take(10)->toArray()), true));
+        dump(array_values(array_values(json_decode(json_encode($id->take(10)->toArray()), true))));
 
         die;
         return $this->view->render($response, "telemedicina/home.twig");
