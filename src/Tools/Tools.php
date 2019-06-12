@@ -240,8 +240,7 @@ class Tools
             ->table("cupanexo3")
             ->whereNotNull("cupanexo3.idnotaclinicarespuesta")
             ->select("cupanexo3.idnotaclinicarespuesta")->get();
-
-        return array_values($id->toArray());
+        return $id;
 
         $patients = Manager::connection("db_telemedicina")
             ->table("notaclinica")

@@ -12,7 +12,9 @@ class TelemedicinaController extends Controller
 {
     public function index (Request $request, Response $response)
     {
-        dump(Tools::telemedicina_indicador_1());
+        $id = Tools::telemedicina_indicador_1();
+        dump($id->take(10));
+        dump(array_values($id->take(10)->toArray()));
         die;
         return $this->view->render($response, "telemedicina/home.twig");
     }
