@@ -16,10 +16,10 @@
             </div>
             <div class="ed-item s-100 l-35 text-center">
                 <h3 class="meta">Meta total</h3>
-                <h3 class="meta-numero">1200000</h3>
+                <h3 class="meta-numero">{{ indicador1.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
                     <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">80%</div>
+                        <div class="porcentaje">{{ indicador1.porcentaje }}%</div>
                     </div>
                     <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
                         <p class="p-absolute">Cumplimiento</p>
@@ -37,15 +37,15 @@
         <h3 class="text-center color-white p-v-1em title-home">Número de localidades con servicios de Telemedicina.</h3>
         <div class="ed-container">
             <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center">
-                <h3 class="meta-numero">50</h3>
-                <div class="range big" data-max="70" data-valor="50" data-background="#60B044" style="width: 90%" data-label="Meta total"></div>
+                <h3 class="meta-numero">{{ indicador2.valor }}</h3>
+                <div class="range big" data-max="{{ indicador2.meta }}" data-valor="{{ indicador2.valor }}" data-background="#60B044" style="width: 90%" data-label="Meta total"></div>
             </div>
             <div class="ed-item s-100 l-50 text-center">
                 <h3 class="meta">Meta total</h3>
-                <h3 class="meta-numero">70</h3>
+                <h3 class="meta-numero">{{ indicador2.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
                     <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">75%</div>
+                        <div class="porcentaje">{{ indicador2.porcentaje }}%</div>
                     </div>
                     <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
                         <p class="p-absolute">Cumplimiento</p>

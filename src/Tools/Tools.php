@@ -235,6 +235,27 @@ class Tools
 
     static public function telemedicina_indicador_1()
     {
+
+        $patients = self::sqlTelemedicina("COUNT (*) AS total");
+        return [
+            "total" => $patients->total,
+            "porcentaje" => round(($patients->total * 100)/self::meta_telemedicina_indicador_1),
+            "meta" => self::meta_telemedicina_indicador_1
+        ];
+    }
+
+    static public function telemedicina_indicador_2()
+    {
+
+        $municipios = self::sqlTelemedicina("COUNT (DISTINCT ciudad.nombre) as total");
+        return [
+            "total" => $municipios->total,
+            "porcentaje" => round(($municipios->total * 100)/self::meta_telemedicina_indicador_2),
+            "meta" => self::meta_telemedicina_indicador_2
+        ];
+    }
+
+    protected function sqlTelemedicina(String $select) {
         $fecha = "2018-04-30 00:00:00";
         $data = Manager::connection("db_telemedicina")
             ->table("cupanexo3")
@@ -264,14 +285,9 @@ class Tools
                 "notaclinica.idnotaclinica", $ids
             )
             ->where("notaclinica.fecha", ">=", $fecha)
-            ->select(Manager::raw("COUNT (*) AS total"))
+            ->select(Manager::raw($select))
             ->first();
 
-        return [
-            "total" => $patients->total,
-            "porcentaje" => round(($patients->total * 100)/self::meta_telemedicina_indicador_1),
-            "meta" => self::meta_telemedicina_indicador_1
-        ];
-
+        return $patients;
     }
 }
