@@ -243,7 +243,7 @@ class Tools
 
         $patients = Manager::connection("db_telemedicina")
             ->table("notaclinica")
-            ->join("cie10 ", "cie10.idcie10", "=", "notaclinica.idcie10principal")
+            ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")
             ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuario")
             ->join("cupanexo3", "cupanexo3.idnotaclinicarespuesta", "=", "notaclinica.idnotaclinica")
             ->join("anexo3", "anexo3.idanexo3", "=", "cupanexo3.idanexo3")
@@ -263,7 +263,7 @@ class Tools
             )
             ->where("notaclinica.fecha", ">=", $fecha)
             ->select(Manager::raw("COUNT (*) AS total"))
-            ->toSql();
+            ->get();
 
         return $patients;
 
