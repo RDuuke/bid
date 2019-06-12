@@ -269,7 +269,7 @@ class Tools
 
         return [
             "total" => $patients->total,
-            "porcentaje" => round($patients->total * 100)/self::meta_telemedicina_indicador_1,
+            "porcentaje" => round(($patients->total * 100)/self::meta_telemedicina_indicador_1),
             "meta" => self::meta_telemedicina_indicador_1
         ];
 
