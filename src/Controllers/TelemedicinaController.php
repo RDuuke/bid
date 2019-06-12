@@ -3,6 +3,7 @@
 namespace Bid\Controllers;
 
 
+use Bid\Tools\Tools;
 use Illuminate\Database\Capsule\Manager;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -11,6 +12,8 @@ class TelemedicinaController extends Controller
 {
     public function index (Request $request, Response $response)
     {
+        dump(Tools::telemedicina_indicador_1());
+        die;
         return $this->view->render($response, "telemedicina/home.twig");
     }
 

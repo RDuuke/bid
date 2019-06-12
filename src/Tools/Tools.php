@@ -28,6 +28,10 @@ class Tools
     const meta_teleasistencia_indicador_2 = 1500;
     const meta_teleasistencia_indicador_3 = 50000;
 
+    const meta_telemedicina_indicador_1 = 120000;
+    const meta_telemedicina_indicador_2 = 75;
+    const meta_telemedicina_indicador_3 = 36000;
+
     static public $type = [
             'teledu' => 'Teleducación',
             'telemed' => 'Telemedicina',
@@ -227,5 +231,38 @@ class Tools
             "porcentaje" => round(($total * 100)/ self::meta_teleasistencia_indicador_3),
             "meta" => self::meta_teleasistencia_indicador_3
         ];
+    }
+
+    static public function telemedicina_indicador_1()
+    {
+        $fecha = "2018-04-30 00:00:00";
+        $patients = Manager::connection("db_telemedicina")
+            ->table("notaclinica")
+            ->join("cie10 ", "cie10.idcie10", "=", "notaclinica.idcie10principal")
+            ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuario")
+            ->join("cupanexo3", "cupanexo3.idnotaclinicarespuesta", "=", "notaclinica.idnotaclinica")
+            ->join("anexo3", "anexo3.idanexo3", "=", "cupanexo3.idanexo3")
+            ->join("encuentro", "encuentro.idencuentro", "=", "cupanexo3.idanexo3")
+            ->join("visita", "visita.idvisita", "=", "encuentro.idvisita")
+            ->join("paciente", "paciente.idpaciente", "=", "visita.idpaciente")
+            ->join("persona", "persona.idpersona", "=", "paciente.idpersona")
+            ->leftJoin("tipopertinencia", "tipopertinencia.idtipopertinencia", "=", "notaclinica.idtipopertinencia")
+            ->leftJoin("usuario", "usuario.idusuario", "=", "cupanexo3.idusuarioresidente")
+            ->leftJoin("tipoidentificacion", "tipoidentificacion.idtipoidentificacion", "=", "persona.idtipodocumento")
+            ->leftJoin("causanopertinencia", "causanopertinencia.idcausanopertinencia", "=", "notaclinica.idcausanopertinencia")
+            ->join("sedeinstitucion", "sedeinstitucion.idsede", "=", "encuentro.idsede")
+            ->join("ciudad", "ciudad.idciudad", "=", "sedeinstitucion.idmunicipio")
+            ->leftJoin("tipodiagnostico", "tipodiagnostico.idtipodiagnostico", "=", "notaclinica.idtipodiagnostico")
+            ->whereIn(
+                "notaclinica.idnotaclinica",
+                Manager::connection("db_telemedicina")
+                    ->table("cupanexo3")
+                    ->whereNotNull("cupanexo3.idnotaclinicarespuesta")
+                    ->select("cupanexo3.idnotaclinicarespuesta")->get()->toArray())
+            ->where("notaclinica.fecha", ">=", $fecha)
+            ->get()->toArray();
+
+        return $patients;
+
     }
 }
