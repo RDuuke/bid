@@ -263,7 +263,7 @@ class Tools
             )
             ->where("notaclinica.fecha", ">=", $fecha)
             ->select(Manager::raw("COUNT (*) AS total"))
-            ->toSql();
+            ->get();
 
         return $patients;
 
