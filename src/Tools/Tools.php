@@ -252,7 +252,7 @@ class Tools
             ->join("paciente", "paciente.idpaciente", "=", "visita.idpaciente")
             ->join("persona", "persona.idpersona", "=", "paciente.idpersona")
             ->leftJoin("tipopertinencia", "tipopertinencia.idtipopertinencia", "=", "notaclinica.idtipopertinencia")
-            ->leftJoin("usuario", "usuario.idusuario", "=", "cupanexo3.idusuarioresidente")
+            ->leftJoin(Manager::raw("usuario as u2"), Manager::raw("u2.idusuario"), "=", "cupanexo3.idusuarioresidente")
             ->leftJoin("tipoidentificacion", "tipoidentificacion.idtipoidentificacion", "=", "persona.idtipodocumento")
             ->leftJoin("causanopertinencia", "causanopertinencia.idcausanopertinencia", "=", "notaclinica.idcausanopertinencia")
             ->join("sedeinstitucion", "sedeinstitucion.idsede", "=", "encuentro.idsede")
