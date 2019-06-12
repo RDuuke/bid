@@ -241,7 +241,7 @@ class Tools
             ->whereNotNull("cupanexo3.idnotaclinicarespuesta")
             ->select("cupanexo3.idnotaclinicarespuesta")->get()->toArray();
 
-        return $id;
+        return array_values($id);
 
         $patients = Manager::connection("db_telemedicina")
             ->table("notaclinica")
