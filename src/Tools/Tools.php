@@ -267,7 +267,11 @@ class Tools
             ->select(Manager::raw("COUNT (*) AS total"))
             ->first();
 
-        return $patients;
+        return [
+            "total" => $patients->total,
+            "porcentaje" => round($patients->total * 100)/self::meta_telemedicina_indicador_1,
+            "meta" => self::meta_telemedicina_indicador_1
+        ];
 
     }
 }
