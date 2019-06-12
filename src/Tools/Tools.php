@@ -236,6 +236,8 @@ class Tools
     static public function telemedicina_indicador_1()
     {
         $fecha = "2018-04-30 00:00:00";
+        return 20;
+        die;
         $patients = Manager::connection("db_telemedicina")
             ->table("notaclinica")
             ->join("cie10 ", "cie10.idcie10", "=", "notaclinica.idcie10principal")
