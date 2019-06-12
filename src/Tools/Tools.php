@@ -236,11 +236,6 @@ class Tools
     static public function telemedicina_indicador_1()
     {
         $fecha = "2018-04-30 00:00:00";
-        return Manager::connection("db_telemedicina")
-            ->table("cupanexo3")
-            ->whereNotNull("cupanexo3.idnotaclinicarespuesta")
-            ->select("cupanexo3.idnotaclinicarespuesta")->get()->toArray();
-        die;
         $patients = Manager::connection("db_telemedicina")
             ->table("notaclinica")
             ->join("cie10 ", "cie10.idcie10", "=", "notaclinica.idcie10principal")
@@ -265,6 +260,7 @@ class Tools
                     ->whereNotNull("cupanexo3.idnotaclinicarespuesta")
                     ->select("cupanexo3.idnotaclinicarespuesta")->get()->toArray())
             ->where("notaclinica.fecha", ">=", $fecha)
+            ->select(Manager::raw("COUNT (*) AS total"))
             ->get()->toArray();
 
         return $patients;
