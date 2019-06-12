@@ -21,11 +21,11 @@
                     <h3>Telemedicina</h3>
                     <span class="update-date">{{ 'now' | date("M d") }} de {{ 'now' | date('Y') }}</span>
                     <small>Fecha última actualización</small>
-                    <h2>60000</h2>
+                    <h2>{{ telemedicina.total }}</h2>
                     <small>Prestaciones a personas vulnerables</small>
-                    <div class="range" data-max="120000" data-valor="60000" data-background="#F01246" style="width: 90%" data-label="Meta total"></div>
+                    <div class="range" data-max="{{ telemedicina.meta }}" data-valor="{{ telemedicina.total }}" data-background="#F01246" style="width: 90%" data-label="Meta total"></div>
                     <div class="ldBar label-center" data-preset="circle"
-                         data-value="50"
+                         data-value="{{ telemedicina.porcentaje }}"
                          style="width:80%;height:80%"
                          data-stroke-width="10"
                          data-stroke="#FCE61D"

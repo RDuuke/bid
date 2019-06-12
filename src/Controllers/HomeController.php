@@ -42,7 +42,8 @@ class HomeController extends Controller
         return $this->view->render($response, "panel.twig", [
             "title" => "Panel",
             "teleducacion" => Tools::teleducacion_indicador_1(),
-            "teleasistencia" => Tools::teleasistencia_indicador_1()
+            "teleasistencia" => Tools::teleasistencia_indicador_1(),
+            "telemedicina" => Tools::telemedicina_indicador_1()
         ]);
     }
 
