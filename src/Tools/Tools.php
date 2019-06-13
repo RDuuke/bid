@@ -262,6 +262,13 @@ class Tools
         ];
     }
 
+    static public function telemedicina_indicador_2_more()
+    {
+        $municipios = self::sqlTelemedicina("ciudad.nombre as municipio, COUNT (*) as total", "municipio", "total");
+
+        return $municipios;
+    }
+
     protected function sqlTelemedicina(String $select, String $groupby = null, String $orderby = null) {
         $fecha = "2018-04-30 00:00:00";
         $data = Manager::connection("db_telemedicina")
