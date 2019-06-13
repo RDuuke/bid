@@ -268,6 +268,8 @@ class Tools
             ->select("cupanexo3.idnotaclinicarespuesta")->get();
 
         $ids = array_column(json_decode(json_encode($data->toArray()), true), "idnotaclinicarespuesta");
+        echo $groupby;
+        die;
         if (is_null($groupby)) {
             $patients = Manager::connection("db_telemedicina")
                 ->table("notaclinica")
