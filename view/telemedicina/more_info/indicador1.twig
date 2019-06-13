@@ -43,7 +43,7 @@ var myLineChart = new Chart(ctx, {
     data: {
         labels : {{ months | json_encode | raw }},
          datasets: [{
-            label: 'Número de profesionales capacitados',
+            label: 'Número de prestaciones a personas vulnerables',
             borderColor: 'rgb(255, 99, 132)',
             data: {{ values | json_encode | raw }}
         }]
