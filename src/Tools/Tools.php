@@ -293,8 +293,6 @@ class Tools
                 ->select(Manager::raw($select))
                 ->first();
         } else {
-            echo "Gruop: " . $groupby;
-            die;
             $patients = Manager::connection("db_telemedicina")
                 ->table("notaclinica")
                 ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")
@@ -318,7 +316,6 @@ class Tools
                 ->where("notaclinica.fecha", ">=", $fecha)
                 ->select(Manager::raw($select))
                 ->groupBy(Manager::raw($groupby))
-                ->orderBy(Manager::raw($orderby))
                 ->toSql();
         }
 
