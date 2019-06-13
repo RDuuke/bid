@@ -31,9 +31,11 @@ class TelemedicinaController extends Controller
             array_push($month, getMothSpanish($carbon->format("F Y")));
             array_push($values, $data[$i]->total);
         }
-        dump($values);
-        dump($month);
-        return $this->view->render($response, "telemedicina/more_info/indicador1.twig");
+        return $this->view->render($response, "telemedicina/more_info/indicador1.twig", [
+            "title" => "Telemedicina indicador 1",
+            "months" => $month,
+            "values" => $values
+        ]);
     }
 
     public function indicador2 (Request $request, Response $response)
