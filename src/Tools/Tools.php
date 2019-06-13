@@ -318,7 +318,7 @@ class Tools
                 )
                 ->where("notaclinica.fecha", ">=", $fecha)
                 ->groupBy(Manager::raw($groupby))
-                ->orderByDesc(Manager::raw($orderby))
+                ->orderBy(Manager::raw($orderby))
                 ->get()->toArray();
         }
 
