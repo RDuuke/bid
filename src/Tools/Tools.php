@@ -252,7 +252,7 @@ class Tools
     static public function telemedicina_indicador_2()
     {
 
-        $municipios = self::sqlTelemedicina("COUNT (DISTINCT ciudad.nombre) as total");
+        $municipios = self::sqlTelemedicina("COUNT (DISTINCT ciudad.nombre) as total")->groupBy(Manager::raw("ANO_MES"));
         return [
             "total" => $municipios->total,
             "porcentaje" => round(($municipios->total * 100)/self::meta_telemedicina_indicador_2),
