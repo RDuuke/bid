@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(E_ERROR | E_PARSE);
 define("DS", DIRECTORY_SEPARATOR);
 define("BASE", dirname(__DIR__) . DS);
 define("VIEW", dirname(__DIR__) . DS . "view" . DS);
