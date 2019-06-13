@@ -246,7 +246,7 @@ class Tools
 
     static public function telemedicina_indicador_1_more()
     {
-        $attention = self::sqlTelemedicina("TO_CHAR(cupanexo3.fecha, \"YYYY_MM\") as ano_mes, COUNT (*) as total");
+        $attention = self::sqlTelemedicina("SELECT to_char(cupanexo3.fecha, 'YYYY_MM') as ANO_MES,count(*)");
 
     }
     static public function telemedicina_indicador_2()
