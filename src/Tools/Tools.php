@@ -268,8 +268,6 @@ class Tools
             ->select("cupanexo3.idnotaclinicarespuesta")->get();
 
         $ids = array_column(json_decode(json_encode($data->toArray()), true), "idnotaclinicarespuesta");
-        echo "Gruop: " . $groupby;
-        die;
         if (is_null($groupby)) {
             $patients = Manager::connection("db_telemedicina")
                 ->table("notaclinica")
@@ -295,6 +293,8 @@ class Tools
                 ->select(Manager::raw($select))
                 ->first();
         } else {
+            echo "Gruop: " . $groupby;
+            die;
             $patients = Manager::connection("db_telemedicina")
                 ->table("notaclinica")
                 ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")
