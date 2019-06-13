@@ -248,6 +248,8 @@ class Tools
     {
         $attention = self::sqlTelemedicina("to_char(cupanexo3.fecha, 'YYYY_MM') as ANO_MES, COUNT (*) as total", "cupanexo3.fecha", "cupanexo3.fecha");
 
+        return $attention;
+
     }
     static public function telemedicina_indicador_2()
     {
@@ -310,14 +312,14 @@ class Tools
                 ->join("sedeinstitucion", "sedeinstitucion.idsede", "=", "encuentro.idsede")
                 ->join("ciudad", "ciudad.idciudad", "=", "sedeinstitucion.idmunicipio")
                 ->leftJoin("tipodiagnostico", "tipodiagnostico.idtipodiagnostico", "=", "notaclinica.idtipodiagnostico")
+                ->select(Manager::raw($select))
                 ->whereIn(
                     "notaclinica.idnotaclinica", $ids
                 )
                 ->where("notaclinica.fecha", ">=", $fecha)
-                ->select(Manager::raw($select))
                 ->groupBy(Manager::raw($groupby))
                 ->orderByDesc(Manager::raw($orderby))
-                ->get();
+                ->toSql();
         }
 
         return $patients;
