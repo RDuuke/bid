@@ -21,6 +21,8 @@ class TelemedicinaController extends Controller
 
     public function indicador1 (Request $request, Response $response)
     {
+        $v= Tools::telemedicina_indicador_1();
+        dump($v);
         $values = Tools::telemedicina_indicador_1_more();
         dump($values);
         die;
