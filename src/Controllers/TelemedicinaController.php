@@ -27,9 +27,9 @@ class TelemedicinaController extends Controller
         $month = [];
         $values = [];
         for($i = 0; $i < count($data); $i++) {
-            $carbon = new Carbon($data[$i]["ano_mes"], "America/Bogota");
+            $carbon = new Carbon($data[$i]->ano_mes, "America/Bogota");
             array_push($month, getMothSpanish($carbon->format("F Y")));
-            array_push($values, $data[$i]["total"]);
+            array_push($values, $data[$i]->total);
         }
         dump($values);
         dump($month);
