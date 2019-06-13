@@ -246,7 +246,7 @@ class Tools
 
     static public function telemedicina_indicador_1_more()
     {
-        $attention = self::sqlTelemedicina("to_char(cupanexo3.fecha, 'YYYY_MM') as ANO_MES,count(*)")->groupBy(Manager::raw("ANO_MES"));
+        $attention = self::sqlTelemedicina("to_char(cupanexo3.fecha, 'YYYY_MM') as ANO_MES,count(*)", "ANO_MES", "ANO_MES");
 
     }
     static public function telemedicina_indicador_2()
@@ -268,7 +268,7 @@ class Tools
             ->select("cupanexo3.idnotaclinicarespuesta")->get();
 
         $ids = array_column(json_decode(json_encode($data->toArray()), true), "idnotaclinicarespuesta");
-        if ($groupby == null) {
+        if (is_null($groupby)) {
             $patients = Manager::connection("db_telemedicina")
                 ->table("notaclinica")
                 ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")
