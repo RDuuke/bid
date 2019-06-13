@@ -21,11 +21,15 @@ class TelemedicinaController extends Controller
 
     public function indicador1 (Request $request, Response $response)
     {
-        $v= Tools::telemedicina_indicador_1();
-        dump($v);
-        $values = Tools::telemedicina_indicador_1_more();
+        $data = Tools::telemedicina_indicador_1_more();
+        $month = [];
+        foreach (array_keys($data) as $key) {
+            $carbon = new Carbon($key, "America/Bogota");
+            array_push($month, getMothSpanish($carbon->format("F Y")));
+        }
+        $values = array_values($data);
         dump($values);
-        die;
+        dump($month);
         return $this->view->render($response, "telemedicina/more_info/indicador1.twig");
     }
 
