@@ -10,22 +10,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Municipio 1</td>
-                <td>80</td>
-            </tr>
-            <tr>
-                <td>Municipio 2</td>
-                <td>60</td>
-            </tr>
-            <tr>
-                <td>Municipio 3</td>
-                <td>45</td>
-            </tr>
-            <tr>
-                <td>Municipio 4</td>
-                <td>20</td>
-            </tr>
+                {% for municipio in municipios %}
+                    <tr>
+                        <td>{{ municipio.municipio | title }}</td>
+                        <td>{{ municipio.total }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
