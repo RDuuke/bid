@@ -246,13 +246,13 @@ class Tools
 
     static public function telemedicina_indicador_1_more()
     {
-        $attention = self::sqlTelemedicina("to_char(cupanexo3.fecha, 'YYYY_MM') as ANO_MES,count(*)", "ANO_MES", "ANO_MES");
+        $attention = self::sqlTelemedicina("to_char(cupanexo3.fecha, 'YYYY_MM') as ANO_MES,count(*)")->groupBy(Manager::raw("ANO_MES");
 
     }
     static public function telemedicina_indicador_2()
     {
 
-        $municipios = self::sqlTelemedicina("COUNT (DISTINCT ciudad.nombre) as total")->groupBy(Manager::raw("ANO_MES"));
+        $municipios = self::sqlTelemedicina("COUNT (DISTINCT ciudad.nombre) as total");
         return [
             "total" => $municipios->total,
             "porcentaje" => round(($municipios->total * 100)/self::meta_telemedicina_indicador_2),
