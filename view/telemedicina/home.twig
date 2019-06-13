@@ -14,7 +14,7 @@
         <h3 class="text-center color-white p-v-1em title-home">Número de prestaciones a personas vulnerables</h3>
         <div class="ed-container">
             <div class="ed-item s-100 l-65">
-                <canvas id="line"></canvas>
+                <div id="chart"></div>
             </div>
             <div class="ed-item s-100 l-35 text-center">
                 <h3 class="meta">Meta total</h3>
@@ -120,7 +120,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 <script>
-
+/*
     var ctx = document.getElementById('line').getContext('2d');
 
     var myLineChart = new Chart(ctx, {
@@ -159,12 +159,13 @@
     }
 
 });
+*/
 </script>
-<script >
+<script>
 var chart = c3.generate({
     data: {
         columns: [
-            ['Número de nuevos algoritmos', {{ indicador1.total }}]
+            ['Número de prestaciones a personas vulnerables ', {{ indicador1.total }}]
         ],
         type: 'gauge',
     },
@@ -182,7 +183,7 @@ var chart = c3.generate({
         threshold: {
 //            unit: 'value', // percentage is default
 //            max: 200, // 100 is default
-            values: [3, 5, 10, 15],
+            values: [48000, 72000, 96000, 120000],
         }
     },
     axis : {
