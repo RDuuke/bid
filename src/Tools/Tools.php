@@ -317,7 +317,7 @@ class Tools
                 ->select(Manager::raw($select))
                 ->groupBy(Manager::raw($groupby))
                 ->orderBy(Manager::raw($orderby))
-                ->get();
+                ->toSql();
         }
 
         return $patients;
