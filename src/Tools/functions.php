@@ -41,7 +41,6 @@
             $bansename = \bin2hex(\rand(10000000, 99999999));
             $filename =  \sprintf('%s.%0.8s', $bansename, $extension);
             $filename = date("d-m-y h:m:s") . "_" . $filename;
-            $uploadedFile->
             $uploadedFile->moveTo(TEMP . $filename);
             return TEMP . $filename;
         } catch ( \Exception $e) {
