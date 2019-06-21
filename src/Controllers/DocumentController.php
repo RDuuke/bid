@@ -230,6 +230,6 @@ class DocumentController extends Controller
             }
             return $archive->getError();
         }
-        return $archive->getError();
+        return $archive;
     }
 }
