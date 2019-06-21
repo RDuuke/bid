@@ -225,6 +225,7 @@ class DocumentController extends Controller
             echo "3-";
             $filename = moveUploadFile($archive);
             if (is_string($filename)) {
+                echo "4";
                 $ex = \pathinfo($archive->getClientFilename(), PATHINFO_EXTENSION);
                 $data = getDataOfArchive($filename, $ex);
                return $data->whorsheet;
