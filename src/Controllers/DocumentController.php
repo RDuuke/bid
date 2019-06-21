@@ -214,6 +214,7 @@ class DocumentController extends Controller
     {
         echo "data";
         $data = $this->File($request);
+        dump($request->getUploadedFiles());
         dump($data);
         die;
     }
