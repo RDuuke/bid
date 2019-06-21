@@ -212,6 +212,7 @@ class DocumentController extends Controller
 
     function listingHighCostDiseases(Request $request, Response $response)
     {
+        echo "data";
         $data = $this->File($request);
         dump($data);
         die;
