@@ -212,15 +212,14 @@ class DocumentController extends Controller
 
     function listingHighCostDiseases(Request $request, Response $response)
     {
-        echo "1-";
         dump($this->File($request));
         die;
     }
     protected  function File(Request $request)
     {
-        echo "2-";
         $uploadFiles = $request->getUploadedFiles();
         $archive = $uploadFiles['archive'];
+        echo $archive->getError();
         if ($archive->getError() == UPLOAD_ERR_OK) {
             echo "3-";
             $filename = moveUploadFile($archive);
