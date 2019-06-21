@@ -210,6 +210,12 @@ class DocumentController extends Controller
         ]);
     }
 
+    function listingHighCostDiseases(Request $request, Response $response)
+    {
+        $data = $this->File($request);
+        dump($data);
+        die;
+    }
     protected  function File(Request $request)
     {
         $uploadFiles = $request->getUploadedFiles();
@@ -217,7 +223,8 @@ class DocumentController extends Controller
         if ($archive->getError() == UPLOAD_ERR_OK) {
             $filename = moveUploadFile($archive);
             if (is_string($filename)) {
-                $data = getDataOfArchive($filename);
+                $ex = \pathinfo($archive->getClientFilename(), PATHINFO_EXTENSION);
+                $data = getDataOfArchive($filename, $ex);
                return $data->whorsheet;
             }
         }

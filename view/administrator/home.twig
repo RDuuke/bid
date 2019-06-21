@@ -79,6 +79,15 @@
                 </form>
             </div>
         </div>
+        <div class="ed-container">
+            <h3>List de enfermedades de alto costo</h3>
+            <form action="{{ path_for('file.list.high.diseases') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="archive" required>
+                <br><br>
+                <button class="btn deg-green">Cargar</button>
+                <div id="response-algoritmos"></div>
+            </form>
+        </div>
         <hr>
         {% endif %}
         {% if data %}

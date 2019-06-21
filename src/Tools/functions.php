@@ -3,15 +3,20 @@
     namespace Bid\Tools;
 
     use Bid\Exceptions\moveFileException;
+    use PhpOffice\PhpSpreadsheet\IOFactory;
     use PhpOffice\PhpSpreadsheet\Reader\Csv;
 
-    function getDataOfArchive($filename)
+    function getDataOfArchive($filename, $ex = "csv")
     {
         try {
-            $reader = new Csv();
+            if ($ex == "csv") {
+                $reader = new Csv();
+                $reader->setDelimiter(";");
+                $reader->setEnclosure('');
+            } else {
+                $reader = IOFactory::createReader('Xlsx');
+            }
             $reader->setReadDataOnly(true);
-            $reader->setDelimiter(";");
-            $reader->setEnclosure('');
 
             $spreadsheet = $reader->load($filename);
 
@@ -36,7 +41,7 @@
             $bansename = \bin2hex(\rand(10000000, 99999999));
             $filename =  \sprintf('%s.%0.8s', $bansename, $extension);
             $filename = date("d-m-y h:m:s") . "_" . $filename;
-
+            $uploadedFile->
             $uploadedFile->moveTo(TEMP . $filename);
             return TEMP . $filename;
         } catch ( \Exception $e) {

@@ -20,6 +20,7 @@ $app->group("/panel", function () {
     $this->post("/file/patients", "DocumentController:uploadPatients")->setName("file.patients");
     $this->post("/file/call/management", "DocumentController:uploadCallManagement")->setName("file.call.management");
     $this->post("/file/call/pathology", "DocumentController:uploadCallPathology")->setName("file.call.pathology");
+    $this->post("/file/list/high/diseases", "DocumentController:listingHighCostDiseases")->setName("file.list.high.diseases");
 
     $this->group("/telemedicina", function () {
         $this->get("/index", "TelemedicinaController:index")->setName("telemedicina.index");
