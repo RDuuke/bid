@@ -224,6 +224,7 @@ class DocumentController extends Controller
         if ($archive->getError() == UPLOAD_ERR_OK) {
             echo "3-";
             $filename = moveUploadFile($archive);
+            echo $filename;
             if (is_string($filename)) {
                 echo "4";
                 $ex = \pathinfo($archive->getClientFilename(), PATHINFO_EXTENSION);
@@ -232,6 +233,6 @@ class DocumentController extends Controller
             }
             return $archive->getError();
         }
-        return $archive;
+        return $archive->getError();
     }
 }
