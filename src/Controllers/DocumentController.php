@@ -213,7 +213,14 @@ class DocumentController extends Controller
     function listingHighCostDiseases(Request $request, Response $response)
     {
         echo "data";
-        dump($request->getUploadedFiles());
+        //dump($request->getUploadedFiles());
+        $uploadFiles = $request->getUploadedFiles();
+        $archive = $uploadFiles['archive'];
+        dump($archive);
+        die;
+        $reader = IOFactory::createReader('Xlsx');
+        $reader->setReadDataOnly(true);
+        $spreadsheet = $reader->load($archive->);
         die;
         $data = $this->File($request);
         dump($data);
