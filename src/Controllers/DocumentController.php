@@ -220,7 +220,7 @@ class DocumentController extends Controller
         die;
         $reader = IOFactory::createReader('Xlsx');
         $reader->setReadDataOnly(true);
-        $spreadsheet = $reader->load($archive->);
+        //$spreadsheet = $reader->load($archive->);
         die;
         $data = $this->File($request);
         dump($data);
