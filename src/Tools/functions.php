@@ -39,7 +39,7 @@
 
             $uploadedFile->moveTo(TEMP . $filename);
             return TEMP . $filename;
-        } catch ( moveFileException $e) {
+        } catch ( \Exception $e) {
             return $e->errorMessage() . " " . $e->getMessage() . " " . $e->getCode();
         }
     };
