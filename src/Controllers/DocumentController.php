@@ -218,6 +218,7 @@ class DocumentController extends Controller
     }
     protected  function File(Request $request)
     {
+        echo "yes";
         $uploadFiles = $request->getUploadedFiles();
         $archive = $uploadFiles['archive'];
         if ($archive->getError() == UPLOAD_ERR_OK) {
@@ -227,6 +228,7 @@ class DocumentController extends Controller
                 $data = getDataOfArchive($filename, $ex);
                return $data->whorsheet;
             }
+            return $archive->getError();
         }
         return $archive->getError();
     }
