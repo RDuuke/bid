@@ -219,13 +219,9 @@ class DocumentController extends Controller
     {
         $uploadFiles = $request->getUploadedFiles();
         $archive = $uploadFiles['archive'];
-        echo $archive->getError();
         if ($archive->getError() == UPLOAD_ERR_OK) {
-            echo "3-";
             $filename = moveUploadFile($archive);
-            echo $filename;
             if (is_string($filename)) {
-                echo "4";
                 $ex = \pathinfo($archive->getClientFilename(), PATHINFO_EXTENSION);
                 $data = getDataOfArchive($filename, $ex);
                return $data->whorsheet;
