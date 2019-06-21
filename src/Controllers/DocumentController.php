@@ -213,17 +213,8 @@ class DocumentController extends Controller
     function listingHighCostDiseases(Request $request, Response $response)
     {
         echo "data";
-        //dump($request->getUploadedFiles());
-        $uploadFiles = $request->getUploadedFiles();
-        $archive = $uploadFiles['archive'];
-        dump($archive);
+        dump($this->File($request));
         die;
-        $reader = IOFactory::createReader('Xlsx');
-        $reader->setReadDataOnly(true);
-        //$spreadsheet = $reader->load($archive->);
-        die;
-        $data = $this->File($request);
-        dump($data);
     }
     protected  function File(Request $request)
     {
@@ -237,5 +228,6 @@ class DocumentController extends Controller
                return $data->whorsheet;
             }
         }
+        return $archive->getError();
     }
 }
