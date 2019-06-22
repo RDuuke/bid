@@ -307,7 +307,7 @@ class Tools
                 "cie10.codigo", TelemeHighCostDisease::all("codigo")->toArray()
             )
             ->where("notaclinica.fecha", ">=", $fecha)
-            ->groupBy(Manager::raw('GROUP BY COD'))
+            ->groupBy(Manager::raw('COD'))
             ->orderBy(Manager::raw('num_atenciones'))
             ->get()->toArray();
 
