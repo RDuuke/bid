@@ -27,15 +27,16 @@ class TelemedicinaController extends Controller
         $data = Tools::telemedicina_indicador_1_more();
         $month = [];
         $values = [];
-        for($i = 0; $i < count($data); $i++) {
-            $carbon = new Carbon($data[$i]->ano_mes, "America/Bogota");
+        for($i = 0; $i < count($data["atentions"]); $i++) {
+            $carbon = new Carbon($data["atentions"][$i]->ano_mes, "America/Bogota");
             array_push($month, getMothSpanish($carbon->format("F Y")));
-            array_push($values, $data[$i]->total);
+            array_push($values, $data["atentions"][$i]->total);
         }
         return $this->view->render($response, "telemedicina/more_info/indicador1.twig", [
             "title" => "Telemedicina indicador 1",
             "months" => $month,
-            "values" => $values
+            "values" => $values,
+            "patologia" => $data["patologias"]
         ]);
     }
 

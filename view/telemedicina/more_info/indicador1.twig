@@ -3,6 +3,7 @@
     <style href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></style>
 {% endblock %}
 {% block content %}
+    {{ patologia | json_encode }}
     <div class="ed-item s-100 bg-white p-all-2rem">
         <div class="ed-container">
             <div class="ed-item s-100 l-70">
