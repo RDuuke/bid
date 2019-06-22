@@ -1,36 +1,22 @@
 {% extends "template/template.twig" %}
 {% block content %}
-    {{ patologias | json_encode }}
     <div class="ed-item s-100 bg-white p-all-2rem">
         <table>
             <thead>
             <tr>
                 <th>Códgio</th>
-                <th>Enfermedad</th>
+                <th>Patología</th>
                 <th>Número de atenciones</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>001</td>
-                <td>Enfermedad 1</td>
-                <td>80</td>
-            </tr>
-            <tr>
-                <td>002</td>
-                <td>Enfermedad 2</td>
-                <td>60</td>
-            </tr>
-            <tr>
-                <td>003</td>
-                <td>Enfermedad 3</td>
-                <td>45</td>
-            </tr>
-            <tr>
-                <td>004</td>
-                <td>Enfermedad 4</td>
-                <td>20</td>
-            </tr>
+            {% for p in patologias %}
+                <tr>
+                    <td>{{ p.cod }}</td>
+                    <td>{{ p.patologia }}</td>
+                    <td>{{ p.num_atenciones }}</td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
