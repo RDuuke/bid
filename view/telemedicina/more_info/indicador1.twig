@@ -29,6 +29,28 @@
             </div>
         </div>
         <br><br><br>
+        <div class="ed-container">
+            <div class="ed-item s-100">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Patologia</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in patologia %}
+                            <tr>
+                                <td>{{ p.codigo }}</td>
+                                <td>{{ p.patologia }}</td>
+                                <td>{{ p.num_atenciones }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% block javascript %}
