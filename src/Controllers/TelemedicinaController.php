@@ -18,7 +18,7 @@ class TelemedicinaController extends Controller
             "title" => "Telemedicina",
             "indicador1" => Tools::telemedicina_indicador_1(),
             "indicador2" => Tools::telemedicina_indicador_2(),
-            "inidcador3" => Tools::telemedicina_indicador_3()
+            "indicador3" => Tools::telemedicina_indicador_3()
         ]);
     }
 
