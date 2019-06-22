@@ -51,8 +51,10 @@ class TelemedicinaController extends Controller
 
     public function indicador3 (Request $request, Response $response)
     {
-        dump(Tools::telemedicina_indicador_3_more());
-        die;
-        return $this->view->render($response, "telemedicina/more_info/indicador3.twig");
+        $patologias = Tools::telemedicina_indicador_3_more();
+        return $this->view->render($response, "telemedicina/more_info/indicador3.twig", [
+            "title" => "Telemedicina indicador 3",
+            "patologias" => $patologias
+        ]);
     }
 }

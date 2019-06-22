@@ -1,5 +1,6 @@
 {% extends "template/template.twig" %}
 {% block content %}
+    {{ patologias | json_encode }}
     <div class="ed-item s-100 bg-white p-all-2rem">
         <table>
             <thead>
