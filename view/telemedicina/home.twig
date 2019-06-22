@@ -65,15 +65,15 @@
         <h3 class="text-center color-white p-v-1em title-home">Número de prestaciones a pacientes de alto costo.</h3>
         <div class="ed-container">
             <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center l-column">
-                <h3 class="meta-numero text-left">20000</h3>
-                <div class="range big" data-max="36000" data-valor="20000" data-background="#60B044" style="width: 90%" data-label="Meta total"></div>
+                <h3 class="meta-numero text-left">{{ indicador3.total }}</h3>
+                <div class="range big" data-max="{{ indicador3.meta }}" data-valor="{{ indicador3.total }}" data-background="#60B044" style="width: 90%" data-label="Meta total"></div>
             </div>
             <div class="ed-item s-100 l-50 text-center">
                 <h3 class="meta">Meta total</h3>
-                <h3 class="meta-numero">36000</h3>
+                <h3 class="meta-numero">{{ indicador3.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
                     <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">50%</div>
+                        <div class="porcentaje">{{ indicador3.porcentaje }}%</div>
                     </div>
                     <div class="ed-item s-100 l-50 p-relative flex align-center">
                         <p class="p-absolute">Cumplimiento</p>

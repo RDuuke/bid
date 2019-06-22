@@ -282,6 +282,52 @@ class Tools
         $ids = array_column(json_decode(json_encode($data->toArray()), true), "idnotaclinicarespuesta");
 
 
+        $enfermedades = Manager::connection("db_telemedicina")
+            ->table("notaclinica")
+            ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")
+            ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuario")
+            ->join("cupanexo3", "cupanexo3.idnotaclinicarespuesta", "=", "notaclinica.idnotaclinica")
+            ->join("anexo3", "anexo3.idanexo3", "=", "cupanexo3.idanexo3")
+            ->join("encuentro", "encuentro.idencuentro", "=", "cupanexo3.idanexo3")
+            ->join("visita", "visita.idvisita", "=", "encuentro.idvisita")
+            ->join("paciente", "paciente.idpaciente", "=", "visita.idpaciente")
+            ->join("persona", "persona.idpersona", "=", "paciente.idpersona")
+            ->leftJoin("tipopertinencia", "tipopertinencia.idtipopertinencia", "=", "notaclinica.idtipopertinencia")
+            ->leftJoin(Manager::raw("usuario as u2"), Manager::raw("u2.idusuario"), "=", "cupanexo3.idusuarioresidente")
+            ->leftJoin("tipoidentificacion", "tipoidentificacion.idtipoidentificacion", "=", "persona.idtipodocumento")
+            ->leftJoin("causanopertinencia", "causanopertinencia.idcausanopertinencia", "=", "notaclinica.idcausanopertinencia")
+            ->join("sedeinstitucion", "sedeinstitucion.idsede", "=", "encuentro.idsede")
+            ->join("ciudad", "ciudad.idciudad", "=", "sedeinstitucion.idmunicipio")
+            ->leftJoin("tipodiagnostico", "tipodiagnostico.idtipodiagnostico", "=", "notaclinica.idtipodiagnostico")
+            ->select(Manager::raw("count(*) as total"))
+            ->whereIn(
+                "notaclinica.idnotaclinica", $ids
+            )
+            ->whereIn(
+                "cie10.codigo", TelemeHighCostDisease::all("codigo")->toArray()
+            )
+            ->where("notaclinica.fecha", ">=", $fecha)
+            ->get()->toArray();
+
+        return [
+            "total" => $enfermedades->total,
+            "porcentaje" => round(($enfermedades->total * 100)/self::meta_telemedicina_indicador_3),
+            "meta" => self::meta_telemedicina_indicador_3
+        ];
+
+    }
+    static public function telemedicina_indicador_3_more()
+    {
+        $fecha = "2018-04-30 00:00:00";
+
+        $data = Manager::connection("db_telemedicina")
+            ->table("cupanexo3")
+            ->whereNotNull("cupanexo3.idnotaclinicarespuesta")
+            ->select("cupanexo3.idnotaclinicarespuesta")->get();
+
+        $ids = array_column(json_decode(json_encode($data->toArray()), true), "idnotaclinicarespuesta");
+
+
         $patients = Manager::connection("db_telemedicina")
             ->table("notaclinica")
             ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")

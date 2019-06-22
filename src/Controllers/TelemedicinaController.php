@@ -17,7 +17,8 @@ class TelemedicinaController extends Controller
         return $this->view->render($response, "telemedicina/home.twig", [
             "title" => "Telemedicina",
             "indicador1" => Tools::telemedicina_indicador_1(),
-            "indicador2" => Tools::telemedicina_indicador_2()
+            "indicador2" => Tools::telemedicina_indicador_2(),
+            "inidcador3" => Tools::telemedicina_indicador_3()
         ]);
     }
 
