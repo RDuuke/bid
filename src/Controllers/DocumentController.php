@@ -9,6 +9,7 @@ use Bid\Models\TeleasisCallManagement;
 use Bid\Models\TeleasisCallPathology;
 use Bid\Models\TeleasisPatients;
 use Bid\Models\TeleduInterracion;
+use Bid\Models\TelemeHighCostDisease;
 use function Bid\Tools\getDataOfArchive;
 use function Bid\Tools\moveUploadFile;
 use Slim\Http\Response;
@@ -212,8 +213,39 @@ class DocumentController extends Controller
 
     function listingHighCostDiseases(Request $request, Response $response)
     {
-        dump($this->File($request));
-        die;
+        $data = $this->File($request);
+
+        for($i = 0; $i < count($data); $i++) {
+            if (TelemeHighCostDisease::updateOrCreate([
+                    "idcie10" => $data[$i][0],
+                    "codigo" => $data[$i][1]
+                ], [
+                    "idcie10" => $data[$i][0],
+                    "codigo" => $data[$i][1],
+                    "descripcion" => $data[$i][2]
+                ])
+            ){
+                array_push($this->creators, $data[$i]);
+            } else {
+                array_push($this->errors, $data[$i]);
+            }
+        }
+
+        return $this->view->render($response, "administrator/home.twig", [
+            "data" => [
+                "errors" => [
+                    "total" => count($this->errors),
+                    "register" => $this->errors
+                ],
+                "creators" => [
+                    "total" => count($this->creators),
+                    "register" => $this->creators
+                ]
+            ],
+            "code" => 200,
+            "message" => "Upload archive xlsx.",
+            "title_table" => "Listado de enfermedades de alto costo"
+        ]);
     }
     protected  function File(Request $request)
     {
