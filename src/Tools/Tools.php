@@ -308,7 +308,7 @@ class Tools
             )
             ->where("notaclinica.fecha", ">=", $fecha)
             ->groupBy(Manager::raw('COD, patologia'))
-            ->orderBy(Manager::raw('num_atenciones desc'))
+            ->orderByDesc(Manager::raw('num_atenciones'))
             ->get()->toArray();
 
         return $patients;
