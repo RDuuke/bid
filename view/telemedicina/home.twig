@@ -50,7 +50,7 @@
                     <div class="ed-item s-100 l-50 flex justify-flex-end">
                         <div class="ldBar label-center" data-preset="circle"
                              data-value="{{ indicador2.porcentaje }}"
-                             style="width:80%;height:80%"
+                             style="width:100%;height:100%"
                              data-stroke-width="10"
                              data-stroke="#FCE61D"
                              data-stroke-trail="#F01246"
@@ -81,8 +81,14 @@
                 <h3 class="meta-numero">{{ indicador3.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
                     <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">{{ indicador3.porcentaje }}%</div>
-                    </div>
+                        <div class="ldBar label-center" data-preset="circle"
+                             data-value="{{ indicador3.porcentaje }}"
+                             style="width:100%;height:100%"
+                             data-stroke-width="10"
+                             data-stroke="#FCE61D"
+                             data-stroke-trail="#F01246"
+                             data-stroke-trail-width="15"
+                        ></div>                    </div>
                     <div class="ed-item s-100 l-50 p-relative flex align-center">
                         <p class="p-absolute">Cumplimiento</p>
                     </div>
@@ -106,7 +112,14 @@
                 <h3 class="meta-numero"></h3>
                 <div class="ed-container s-100 m-2em-b">
                     <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">{{ indicador3.porcentaje < 100 ? indicador3.porcentaje : 100 }}%</div>
+                        <div class="ldBar label-center" data-preset="circle"
+                             data-value="{{ indicador3.porcentaje }}"
+                             style="width:100%;height:100%"
+                             data-stroke-width="10"
+                             data-stroke="#FCE61D"
+                             data-stroke-trail="#F01246"
+                             data-stroke-trail-width="15"
+                        ></div>
                     </div>
                     <div class="ed-item s-100 l-50 p-relative flex align-center">
                         <p class="p-absolute">Cumplimiento</p>
@@ -186,6 +199,7 @@ var chart = c3.generate({
             show: false // to turn off the min/max labels.
        },
     },
+    size : 300,
     color: {
         pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
         threshold: {
@@ -198,9 +212,6 @@ var chart = c3.generate({
       y : {
           show : false
       }
-    },
-    size: {
-        height: 180
     },
     tooltip : {
         contents : function(d) {
