@@ -5,7 +5,7 @@ function range_init(config = {
     valor : 50,
     background : "red"
 }) {
-    var left = 8;
+    var left = 20;
     elements = document.getElementsByClassName(config.item);
     for (let element of elements) {
         if (element.classList.contains("big")) {
