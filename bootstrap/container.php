@@ -34,7 +34,7 @@ $container["view"] = function ($container) {
       $view->getEnvironment()->addGlobal("teleasistencia", \Bid\Tools\Tools::Teleasistencia);
       $view->getEnvironment()->addGlobal("telemedicina", \Bid\Tools\Tools::Telemedicina);
       $view->getEnvironment()->addGlobal("teleducacion", \Bid\Tools\Tools::Teleducacion);
-      $view->getEnvironment()->addGlobal("visualisador", \Bid\Tools\Tools::Visualizador);
+      $view->getEnvironment()->addGlobal("visualizador", \Bid\Tools\Tools::Visualizador);
       $view->getEnvironment()->addGlobal("user", $_SESSION["user_bid"]);
 
       return $view;
