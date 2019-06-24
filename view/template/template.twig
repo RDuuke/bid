@@ -24,7 +24,7 @@
         </nav>
     </div>
     <div class="ed-item s-100 l-20 p-v-10 l-cross-center l-main-end">
-        {% if (auth.institution != visualisador or auth.institution == administrador %}
+        {% if (auth.institution != visualisador or auth.institution == administrador) %}
             <a href="{{ path_for('panel.administrator') }}" class="btn deg-yellow">Administrar</a>
         {% endif %}
         <a class="btn sing-out deg-yellow" href="{{ path_for('logout') }}"><img src="{{ base_url() }}/images/sing-out.svg" alt=""></a>
