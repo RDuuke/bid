@@ -136,7 +136,7 @@ p {
 .c3-chart-arc text {
     fill: #ED1A4A !important;
 }
-.p-relative >a.btn.p-absolute {
+.p-relative a.btn.p-absolute {
     bottom: 5%;
     right: 5%;
 }
