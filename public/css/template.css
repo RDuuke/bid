@@ -137,8 +137,8 @@ p {
     fill: #ED1A4A !important;
 }
 a.btn.home {
-    bottom: 5%;
-    right: 5%;
+    bottom: 15px;
+    right: 30px;
 }
 .teleasistencia .ldBar.label-center > .ldBar-label {
     width: 35%;
