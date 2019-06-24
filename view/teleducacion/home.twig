@@ -11,7 +11,7 @@
         <div class="ed-item s-100 l-50 bg-white-transparent text-center color-white fit-content p-relative">
             <h3 class="text-center color-white p-v-1em title-home">Número de contenidos educativos desarrollados para la capacitación de profesionales de la salud</h3>
             <div class="ed-container">
-                <div class="ed-item s-100 l-50">
+                <div class="ed-item s-100 l-50 teleducacion">
                     <div id="chart"></div>
                 </div>
                 <div class="ed-item s-100 l-50 text-center">
@@ -36,7 +36,7 @@
                     <a href="{{ path_for('teleducacion.indicador.2') }}" class="btn deg-yellow p-absolute home">Más información</a>
                 </div>
             </div>
-            <div class="flex l-cross-center l-justify-center p-v-1em">
+            <div class="flex l-cross-center p-v-1em">
                 <p style="margin: 0;padding-left: 15px">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
             </div>
         </div>
@@ -68,7 +68,7 @@
                     <a href="{{ path_for('teleducacion.indicador.3') }}" class="btn deg-yellow p-absolute home">Más información</a>
                 </div>
             </div>
-            <div class="flex l-cross-center l-justify-center p-v-1em">
+            <div class="flex l-cross-center p-v-1em">
                 <p style="margin: 0;padding-left: 15px">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
             </div>
         </div>
@@ -99,7 +99,7 @@
                 <a href="{{ path_for('teleducacion.indicador.1') }}" class="btn deg-yellow p-absolute home">Más información</a>
             </div>
         </div>
-        <div class="flex l-cross-center l-justify-center p-v-1em">
+        <div class="flex l-cross-center p-v-1em">
             <p style="margin: 0;padding-left: 15px">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
         </div>
     </div>
@@ -141,7 +141,7 @@ var chart = c3.generate({
       }
     },
     size: {
-        height: 180
+        height: 250
     },
     tooltip : {
         contents : function(d) {

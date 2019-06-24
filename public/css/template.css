@@ -141,6 +141,8 @@ a.btn.home {
     right: 30px;
 }
 
-.teleasistencia .ldBar.label-center > .ldBar-label {
+.teleasistencia .ldBar.label-center > .ldBar-label,
+.teleducacion .ldBar.label-center > .ldBar-label
+{
     width: 35%;
 }
