@@ -133,10 +133,13 @@ p {
     font-size: 2em;
     padding: .5em 0;
 }
-.c3-chart-arc text {
+.telemedicina .c3-chart-arc text {
     fill: #ED1A4A !important;
 }
 a.btn.home {
     bottom: 5%;
     right: 5%;
+}
+.teleasistencia .ldBar.label-center > .ldBar-label {
+    width: 35%;
 }
