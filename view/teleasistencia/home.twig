@@ -8,7 +8,7 @@
     <div class="ed-item s-100 title-indicador">
         <h2 class="color-white">Teleasistencia</h2>
     </div>
-    <div class="ed-item s-100 l-50 bg-white-transparent text-center color-white fit-content">
+    <div class="ed-item s-100 l-50 bg-white-transparent text-center color-white fit-content p-relative">
         <h3 class="text-center color-white p-v-1em title-home">Número de nuevos algoritmos generados</h3>
         <div class="ed-container">
             <div class="ed-item s-100 l-50">
@@ -33,19 +33,19 @@
                     </div>
 
                 </div>
-                <a href="{{ path_for('teleasistencia.indicador.1') }}" class="btn deg-yellow">Más información</a>
+                <a href="{{ path_for('teleasistencia.indicador.1') }}" class="btn deg-yellow p-absolute home">Más información</a>
             </div>
         </div>
         <div class="flex l-cross-center p-v-2em">
             <p style="margin: 0;padding-left: 15px">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
         </div>
     </div>
-    <div class="ed-item s-100 l-50  bg-white-transparent text-center color-white fit-content">
+    <div class="ed-item s-100 l-50  bg-white-transparent text-center color-white fit-content p-relative">
         <h3 class="text-center color-white p-v-1em title-home">Número de pacientes vinculados al programa de Teleasistencia domiciliaria</h3>
         <div class="ed-container">
             <div class="ed-item s-100 l-50 flex l-cross-center">
                 <h3 class="meta-numero">{{ indicador2.total }}</h3>
-                <div class="range big" data-max="{{ indicador2.meta }}" data-valor="{{ indicador2.total }}" data-background="#ED1A4A" style="width: 90%" data-label="Meta total"></div>
+                <div class="range big" data-max="{{ indicador2.meta }}" data-valor="{{ indicador2.total }}" data-background="#39B54A" style="width: 90%" data-label="Meta total"></div>
             </div>
             <div class="ed-item s-100 l-50 text-center">
                 <h3 class="meta">Meta total</h3>
@@ -65,7 +65,7 @@
                     </div>
 
                 </div>
-                <a href="{{ path_for('teleasistencia.indicador.2') }}" class="btn deg-yellow">Más información</a>
+                <a href="{{ path_for('teleasistencia.indicador.2') }}" class="btn deg-yellow p-absolute home">Más información</a>
             </div>
         </div>
         <div class="flex l-cross-center p-v-2em">
@@ -78,7 +78,7 @@
         <div class="ed-container">
             <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center l-column">
                 <h3 class="meta-numero text-left">{{ indicador3.total }}</h3>
-                <div class="range big" data-max="{{ indicador3.meta }}" data-valor="{{ indicador3.total }}" data-background="#ED1A4A" style="width: 90%" data-label="Meta total"></div>
+                <div class="range big" data-max="{{ indicador3.meta }}" data-valor="{{ indicador3.total }}" data-background="#39B54A" style="width: 90%" data-label="Meta total"></div>
             </div>
             <div class="ed-item s-100 l-50 text-center">
                 <h3 class="meta">Meta total</h3>
@@ -87,7 +87,7 @@
                     <div class="ed-item s-100 l-70 flex justify-flex-end">
                         <div class="ldBar label-center" data-preset="circle"
                              data-value="{{ indicador3.porcentaje }}"
-                             style="width:100%;height:100%"
+                             style="width:60%;height:60%"
                              data-stroke-width="10"
                              data-stroke-trail-width="15"
                              data-stroke="#39B54A"
@@ -99,7 +99,7 @@
                         <p class="p-absolute" style="margin-left: 10px">Cumplimiento</p>
                     </div>
                 </div>
-                <a href="{{ path_for('teleasistencia.indicador.3') }}" class="btn deg-yellow">Más información</a>
+                <a href="{{ path_for('teleasistencia.indicador.3') }}" class="btn deg-yellow p-absolute home">Más información</a>
             </div>
         </div>
         <div class="flex l-cross-center p-v-2em">
