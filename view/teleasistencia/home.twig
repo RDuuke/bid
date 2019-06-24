@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
     <div class="ed-item s-100 title-indicador">
-        <h2 class="color-white">Teleducación</h2>
+        <h2 class="color-white">Teleasistencia</h2>
     </div>
     <div class="ed-item s-100 l-50 bg-white-transparent text-center color-white fit-content">
         <h3 class="text-center color-white p-v-1em title-home">Número de nuevos algoritmos generados</h3>
@@ -18,11 +18,18 @@
                 <h3 class="meta">Meta total</h3>
                 <h3 class="meta-numero">{{ indicador1.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
-                    <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">{{ indicador1.porcentaje < 100 ? indicador1.porcentaje : 100 }}%</div>
+                    <div class="ed-item s-100 l-70 flex justify-flex-end">
+                        <div class="ldBar label-center" data-preset="circle"
+                             data-value="{{ indicador1.porcentaje }}"
+                             style="width:80%;height:80%"
+                             data-stroke-width="10"
+                             data-stroke-trail-width="15"
+                             data-stroke="#39B54A"
+                             data-stroke-trail="#014D6F"
+                        ></div>
                     </div>
-                    <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
-                        <p class="p-absolute">Cumplimiento</p>
+                    <div class="ed-item s-100 l-30 p-relative flex justify-flex-end align-center">
+                        <p class="p-absolute" style="margin-left: 10px">Cumplimiento</p>
                     </div>
 
                 </div>
@@ -30,7 +37,7 @@
             </div>
         </div>
         <div class="flex l-cross-center p-v-2em">
-            <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
+            <p style="margin: 0;padding-left: 15px">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
         </div>
     </div>
     <div class="ed-item s-100 l-50  bg-white-transparent text-center color-white fit-content">
@@ -44,11 +51,17 @@
                 <h3 class="meta">Meta total</h3>
                 <h3 class="meta-numero">{{ indicador2.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
-                    <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">{{ indicador2.porcentaje < 100 ? indicador2.porcentaje : 100 }}%</div>
-                    </div>
-                    <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
-                        <p class="p-absolute">Cumplimiento</p>
+                    <div class="ed-item s-100 l-70 flex justify-flex-end">
+                        <div class="ldBar label-center" data-preset="circle"
+                             data-value="{{ indicador2.porcentaje }}"
+                             style="width:80%;height:80%"
+                             data-stroke-width="10"
+                             data-stroke-trail-width="15"
+                             data-stroke="#39B54A"
+                             data-stroke-trail="#014D6F"
+                        ></div>                    </div>
+                    <div class="ed-item s-100 l-30 p-relative flex justify-flex-end align-center">
+                        <p class="p-absolute" style="margin-left: 10px">Cumplimiento</p>
                     </div>
 
                 </div>
@@ -71,11 +84,19 @@
                 <h3 class="meta">Meta total</h3>
                 <h3 class="meta-numero">{{ indicador3.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
-                    <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">{{ indicador3.porcentaje < 100 ? indicador3.porcentaje : 100 }}%</div>
+                    <div class="ed-item s-100 l-70 flex justify-flex-end">
+                        <div class="ldBar label-center" data-preset="circle"
+                             data-value="{{ indicador3.porcentaje }}"
+                             style="width:80%;height:80%"
+                             data-stroke-width="10"
+                             data-stroke-trail-width="15"
+                             data-stroke="#39B54A"
+                             data-stroke-trail="#014D6F"
+                        ></div>
                     </div>
-                    <div class="ed-item s-100 l-50 p-relative flex align-center">
-                        <p class="p-absolute">Cumplimiento</p>
+
+                    <div class="ed-item s-100 l-30 p-relative flex align-center">
+                        <p class="p-absolute" style="margin-left: 10px">Cumplimiento</p>
                     </div>
                 </div>
                 <a href="{{ path_for('teleasistencia.indicador.3') }}" class="btn deg-yellow">Más información</a>

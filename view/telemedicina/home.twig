@@ -5,9 +5,6 @@
     <link rel="stylesheet" href="{{ base_url() }}/css/lib/c3.min.css">
 {% endblock %}
 {% block content %}
-    {{ indicador2 | json_encode }}
-    {{ indicador1 | json_encode }}
-    {{ indicador3 | json_encode }}
     <div class="ed-item s-100 title-indicador">
         <h2 class="color-white">Telemedicina</h2>
     </div>
@@ -111,7 +108,7 @@
         <div class="ed-container">
             <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center l-column">
                 <h3 class="meta-numero text-left">{{ indicador3.total }}</h3>
-                <div class="range big" data-max="0" data-valor="0" data-background="#60B044" style="width: 90%" data-label="Meta total"></div>
+                <div class="range big" data-max="0" data-valor="0" data-background="#ED1A4A" style="width: 90%" data-label="Meta total"></div>
             </div>
             <div class="ed-item s-100 l-50 text-center">
                 <h3 class="meta">Meta total</h3>
