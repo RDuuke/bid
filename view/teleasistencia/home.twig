@@ -76,11 +76,11 @@
         <h3 class="text-center color-white p-v-1em title-home">Número de llamadas gestionadas con el modelo de atención de Teleasistencia domiciliaria
         </h3>
         <div class="ed-container">
-            <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center l-column">
+            <div class="ed-item s-100 l-65 flex l-cross-center l-justify-center l-column">
                 <h3 class="meta-numero text-left">{{ indicador3.total }}</h3>
                 <div class="range big" data-max="{{ indicador3.meta }}" data-valor="{{ indicador3.total }}" data-background="#014D6F" style="width: 90%" data-label="Meta total"></div>
             </div>
-            <div class="ed-item s-100 l-50 text-center">
+            <div class="ed-item s-100 l-35 text-center">
                 <h3 class="meta">Meta total</h3>
                 <h3 class="meta-numero">{{ indicador3.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
@@ -103,7 +103,7 @@
             </div>
         </div>
         <div class="flex l-cross-center p-v-2em">
-            <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
+            <p style="margin: 0">Fecha ultima actualización: {{ created_at | date("Y-m-d") }}</p>
         </div>
     </div>
 {% endblock %}
