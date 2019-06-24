@@ -43,6 +43,7 @@ footer {
 }
 #content {
     flex: 1;
+    margin-bottom: 1em;
 }
 #form-login button:last-child {
     align-self: flex-end;
@@ -118,4 +119,12 @@ label[for="change_password"]
 }
 p {
     margin: 0;
+}
+.text-home p {
+    text-align: left;
+    word-break: break-all;
+    font-size: 1.3em;
+}
+.text-home h1 {
+    font-size: 2.5em;
 }
