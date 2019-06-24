@@ -8,7 +8,7 @@
         <div class="ed-item s-100 title-indicador">
             <h2 class="color-white">Teleducación</h2>
         </div>
-        <div class="ed-item s-100 l-50 bg-white-transparent text-center color-white fit-content">
+        <div class="ed-item s-100 l-50 bg-white-transparent text-center color-white fit-content p-relative">
             <h3 class="text-center color-white p-v-1em title-home">Número de contenidos educativos desarrollados para la capacitación de profesionales de la salud</h3>
             <div class="ed-container">
                 <div class="ed-item s-100 l-50">
@@ -18,22 +18,29 @@
                     <h3 class="meta">Meta total</h3>
                     <h3 class="meta-numero">{{ indicador2.meta }}</h3>
                     <div class="ed-container s-100 m-2em-b">
-                        <div class="ed-item s-100 l-50 flex justify-flex-end">
-                            <div class="porcentaje">{{ indicador2.porcentaje < 100 ? indicador2.porcentaje : 100 }}%</div>
+                        <div class="ed-item s-100 l-70 flex justify-flex-end">
+                            <div class="ldBar label-center" data-preset="circle"
+                                 data-value="{{ indicador2.porcentaje  }}"
+                                 style="width:80%;height:80%"
+                                 data-stroke-width="10"
+                                 data-stroke-trail-width="15"
+                                 data-stroke="#FCE61D"
+                                 data-stroke-trail="#014D6F"
+                            ></div>
                         </div>
-                        <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
+                        <div class="ed-item s-100 l-30 p-relative flex justify-flex-end align-center">
                             <p class="p-absolute">Cumplimiento</p>
                         </div>
 
                     </div>
-                    <a href="{{ path_for('teleducacion.indicador.2') }}" class="btn deg-yellow">Más información</a>
+                    <a href="{{ path_for('teleducacion.indicador.2') }}" class="btn deg-yellow p-absolute home">Más información</a>
                 </div>
             </div>
-            <div class="flex l-cross-center l-justify-center p-v-2em">
-                <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
+            <div class="flex l-cross-center l-justify-center p-v-1em">
+                <p style="margin: 0;padding-left: 15px">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
             </div>
         </div>
-        <div class="ed-item s-100 l-50  bg-white-transparent text-center color-white fit-content">
+        <div class="ed-item s-100 l-50  bg-white-transparent text-center color-white fit-content p-relative">
             <h3 class="text-center color-white p-v-1em title-home">Número de interacciones en plataforma de Teleducación</h3>
             <div class="ed-container">
                 <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center">
@@ -44,44 +51,56 @@
                     <h3 class="meta">Meta total</h3>
                     <h3 class="meta-numero">{{ indicador3.meta }}</h3>
                     <div class="ed-container s-100 m-2em-b">
-                        <div class="ed-item s-100 l-50 flex justify-flex-end">
-                            <div class="porcentaje">{{ indicador3.porcentaje < 100 ? indicador3.porcentaje : 100 }}%</div>
-                        </div>
-                        <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
+                        <div class="ed-item s-100 l-70 flex justify-flex-end">
+                            <div class="ldBar label-center" data-preset="circle"
+                                 data-value="{{ indicador3.porcentaje  }}"
+                                 style="width:80%;height:80%"
+                                 data-stroke-width="10"
+                                 data-stroke-trail-width="15"
+                                 data-stroke="#FCE61D"
+                                 data-stroke-trail="#014D6F"
+                            ></div>                          </div>
+                        <div class="ed-item s-100 l-30 p-relative flex justify-flex-end align-center">
                             <p class="p-absolute">Cumplimiento</p>
                         </div>
 
                     </div>
-                    <a href="{{ path_for('teleducacion.indicador.3') }}" class="btn deg-yellow ">Más información</a>
+                    <a href="{{ path_for('teleducacion.indicador.3') }}" class="btn deg-yellow p-absolute home">Más información</a>
                 </div>
             </div>
-            <div class="flex l-cross-center l-justify-center p-v-2em">
-                <p style="margin: 0">Fecha ultima actualización: {{ created_at | date("Y-m-d") }}</p>
+            <div class="flex l-cross-center l-justify-center p-v-1em">
+                <p style="margin: 0;padding-left: 15px">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
             </div>
         </div>
-    <div class="ed-item s-100 bg-white-transparent color-white text-center fit-content">
+    <div class="ed-item s-100 bg-white-transparent color-white text-center fit-content p-relative">
         <h3 class="text-center color-white p-v-1em title-home">Número de profesionales de la salud capacitados</h3>
         <div class="ed-container">
-            <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center l-column">
+            <div class="ed-item s-100 l-65 flex l-cross-center l-justify-center l-column">
                 <h3 class="meta-numero text-left">{{ indicador1.total }}</h3>
                 <div class="range big" data-max="{{ indicador1.meta }}" data-valor="{{ indicador1.total }}" data-background="#60B044" style="width: 90%" data-label="Meta total"></div>
             </div>
-            <div class="ed-item s-100 l-50 text-center">
+            <div class="ed-item s-100 l-35 text-center">
                 <h3 class="meta">Meta total</h3>
                 <h3 class="meta-numero">{{ indicador1.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
-                    <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">{{ indicador1.porcentaje < 100 ? indicador1.porcentaje : 100 }}%</div>
-                    </div>
-                    <div class="ed-item s-100 l-50 p-relative flex justify-end align-center">
-                        <p class="p-absolute">Cumplimiento</p>
+                    <div class="ed-item s-100 l-70 flex justify-flex-end">
+                        <div class="ldBar label-center" data-preset="circle"
+                             data-value="{{ indicador1.porcentaje  }}"
+                             style="width:80%;height:80%"
+                             data-stroke-width="10"
+                             data-stroke-trail-width="15"
+                             data-stroke="#FCE61D"
+                             data-stroke-trail="#014D6F"
+                        ></div>                      </div>
+                    <div class="ed-item s-100 l-30 p-relative flex justify-end align-center">
+                        <p class="p-absolute" style="margin-left: 10px;left: -50px;top: 83px;">Cumplimiento</p>
                     </div>
                 </div>
-                <a href="{{ path_for('teleducacion.indicador.1') }}" class="btn deg-yellow">Más información</a>
+                <a href="{{ path_for('teleducacion.indicador.1') }}" class="btn deg-yellow p-absolute home">Más información</a>
             </div>
         </div>
-        <div class="flex l-cross-center l-justify-center p-v-2em">
-            <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
+        <div class="flex l-cross-center l-justify-center p-v-1em">
+            <p style="margin: 0;padding-left: 15px">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
         </div>
     </div>
 {% endblock %}
