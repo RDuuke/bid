@@ -162,7 +162,9 @@ var chart = c3.generate({
             show: false // to turn off the min/max labels.
        },
     },
-    size : 500,
+    size: {
+        height: 300
+    },
     color: {
         pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
         threshold: {
