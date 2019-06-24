@@ -7,11 +7,11 @@
     <div class="ed-tiem s-100 l-90 bg-white p-all-2rem fill-content center">
         <a href="{{ path_for('panel.administrator') }}" class="btn deg-yellow">Volver</a>
         <br>
-        {% if user %}
-        <form action="{{ path_for('panel.user.update', { id : user_edit.id }) }}" method="post" id="user">
-            {% else %}
+        {% if user_edit %}
+            <form action="{{ path_for('panel.user.update', { id : user_edit.id }) }}" method="post" id="user">
+        {% else %}
             <form action="{{ path_for('panel.user.store') }}" method="post" id="user">
-                {% endif%}
+        {% endif %}
                 <div class="content-input">
                     <label for="name">Nombres</label>
                     <input type="text"  id="name" name="name" class="input" value="{{ user_edit ? user_edit.name : '' }}" required>
