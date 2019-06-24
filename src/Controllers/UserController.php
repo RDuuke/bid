@@ -18,7 +18,7 @@ class UserController extends Controller
 
         return $this->view->render($response, "administrator/users/user.twig",
             [
-                'user' => $user,
+                'user_edit' => $user,
                 'title' => $user->full_name
             ]
         );

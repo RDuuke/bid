@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ base_url() }}/css/lib/range-chart.css">
 {% endblock %}
 {% block content %}
+    {{ user | json_encode }}
     <div class="ed-tiem s-100 l-90 bg-white p-all-2rem fill-content center">
         <a href="{{ path_for('panel.administrator') }}" class="btn deg-yellow">Volver</a>
         <br>

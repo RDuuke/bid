@@ -8,21 +8,21 @@
         <a href="{{ path_for('panel.administrator') }}" class="btn deg-yellow">Volver</a>
         <br>
         {% if user %}
-            <form action="{{ path_for('panel.user.update', { id : user.id }) }}" method="post" id="user">
+            <form action="{{ path_for('panel.user.update', { id : user_edit.id }) }}" method="post" id="user">
         {% else %}
             <form action="{{ path_for('panel.user.store') }}" method="post" id="user">
         {% endif%}
             <div class="content-input">
                 <label for="name">Nombres</label>
-                <input type="text"  id="name" name="name" class="input" value="{{ user ? user.name : '' }}" required>
+                <input type="text"  id="name" name="name" class="input" value="{{ user_edit ? user_edit.name : '' }}" required>
             </div>
             <div class="content-input">
                 <label for="last_name">Apellidos</label>
-                <input type="text" name="last_name" class="input" value="{{ user ? user.last_name : '' }}" required>
+                <input type="text" name="last_name" class="input" value="{{ user_edit ? user_edit.last_name : '' }}" required>
             </div>
             <div class="content-input">
                 <label for="username">Username</label>
-                <input type="text" name="username" class="input" value="{{ user ? user.username : '' }}" required>
+                <input type="text" name="username" class="input" value="{{ user_edit ? user_edit.username : '' }}" required>
             </div>
             <div class="content-input">
             {% if user is empty %}
@@ -41,7 +41,7 @@
                 <select name="institution" id="institution" required>
                     <option value="">Seleccione</option>
                     {% for key, p in types %}
-                        {% if user.institution == key %}
+                        {% if user_edit.institution == key %}
                             <option value="{{ key }}" selected>{{ p }}</option>
                         {% else %}
                             <option value="{{ key }}">{{ p }}</option>
@@ -50,7 +50,7 @@
                 </select>
             </div>
             <div class="content-input">
-                <button class="btn deg-green">{{ user ? 'Actualizar' : 'Crear' }}</button>
+                <button class="btn deg-green">{{ user_edit ? 'Actualizar' : 'Crear' }}</button>
             </div>
         </form>
     </div>
