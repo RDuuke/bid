@@ -7,7 +7,7 @@
     text-align: center;
     box-sizing: padding-box;
     padding: .5em;
-    min-height: 90%;
+    min-height: 100%;
 }
 .card-stats h2 {
     font-size: 3em;
