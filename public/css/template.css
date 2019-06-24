@@ -128,3 +128,11 @@ p {
 .text-home h1 {
     font-size: 2.5em;
 }
+.title-indicador h2 {
+    font-size: 2em;
+    padding: .5em 0;
+}
+.c3-chart-arc text {
+    font-size: 2em;
+    color: #ED1A4A;
+}
