@@ -41,7 +41,9 @@ function range_init(config = {
         area_paint.style.width = config.valor + "%";
         area_paint.style.backgroundColor = config.background;
         circle.style.backgroundColor = config.background;
-        circle.style.left = "calc(" +config.valor +"% - "+left+"px)";
+        if (left != 0) {
+            circle.style.left = "calc(" +config.valor +"% - "+left+"px)";
+        }
         label.innerText = config.label;
         if (config.valor > 60) {
             config.background = "black";

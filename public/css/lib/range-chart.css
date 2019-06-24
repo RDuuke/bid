@@ -43,6 +43,7 @@
 .range.big .make {
     width: 28px;
     height: 28px;
+    top: 4px;
 }
 .range.big .label{
     font-size: 1em;
