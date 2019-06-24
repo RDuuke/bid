@@ -4,25 +4,25 @@
 @import "lib/alert.css";
 @font-face {
     font-family: "Gotham";
-    src: url("http://bid.medicinaudea.co/bid/public/fonts/gotham/GothamMedium.ttf");
+    src: url("http://190.248.86.226:8080/bid/public/fonts/gotham/GothamMedium.ttf");
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Gotham";
-    src: url("http://bid.medicinaudea.co/bid/public/fonts/gotham/Gotham-Black.otf");
+    src: url("http://190.248.86.226:8080/bid/public/fonts/gotham/Gotham-Black.otf");
     font-weight: 900;
 }
 
 @font-face {
     font-family: "Gotham";
-    src: url("http://bid.medicinaudea.co/bid/public/fonts/gotham/GothamBold.ttf");
+    src: url("http://190.248.86.226:8080/bid/public/fonts/gotham/GothamBold.ttf");
     font-weight: bold;
 }
 
 @font-face {
     font-family: "Gotham";
-    src: url("http://bid.medicinaudea.co/bid/public/fonts/gotham/GothamLight.ttf");
+    src: url("http://190.248.86.226:8080/bid/public/fonts/gotham/GothamLight.ttf");
     font-weight: 300;
 }
 
