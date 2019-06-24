@@ -108,7 +108,7 @@
         <div class="ed-container">
             <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center l-column">
                 <h3 class="meta-numero text-left">{{ indicador3.total }}</h3>
-                <div class="range big" data-max="0" data-valor="0" data-background="#ED1A4A" style="width: 90%" data-label="Meta total"></div>
+                <div id="satisfation" ></div>
             </div>
             <div class="ed-item s-100 l-50 text-center">
                 <h3 class="meta">Meta total</h3>
@@ -182,5 +182,21 @@ var chart = c3.generate({
         }
     }
 });
+var donut = c3.generate({
+        bindto: "#satisfation",
+        data: {
+            columns: [["Usuarios satisfechos", 90], ["Usuarios no satisfechos", 10]],
+            type : 'donut',
+        },
+        donut: {
+            title: "Porcentaje de pacientes que se declaran satisfechos con el servicio.",
+        },
+        tooltip : {
+            contents : function(d, v, i) {
+                return "<div style='background: #fff;padding:1em;border:1px solid'>Total de llamadas: "+d[0].value+" de "+d[0].id+"</div>";
+            }
+        }
+
+    });
 </script>
 {% endblock %}
