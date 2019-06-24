@@ -13,11 +13,11 @@
     </div>
     <div class="ed-item s-100 l-50 bg-white-transparent text-center color-white fit-content">
         <h3 class="text-center color-white p-v-1em title-home">Número de prestaciones a personas vulnerables</h3>
-        <div class="ed-container">
-            <div class="ed-item s-100 l-65">
+        <div class="ed-container p-relative">
+            <div class="ed-item s-100 l-60">
                 <div id="chart"></div>
             </div>
-            <div class="ed-item s-100 l-35 text-center">
+            <div class="ed-item s-100 l-40 text-center">
                 <h3 class="meta">Meta total</h3>
                 <h3 class="meta-numero">{{ indicador1.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
@@ -35,14 +35,14 @@
                     </div>
 
                 </div>
-                <a href="{{ path_for('telemedicina.indicador.1') }}" class="btn deg-yellow">Más información</a>
+                <a href="{{ path_for('telemedicina.indicador.1') }}" class="btn deg-yellow p-absolute">Más información</a>
             </div>
         </div>
         <div class="flex l-cross-center l-justify-center p-v-2em">
             <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
         </div>
     </div>
-    <div class="ed-item s-100 l-50  bg-white-transparent text-center color-white fit-content">
+    <div class="ed-item s-100 l-50  bg-white-transparent text-center color-white fit-content p-relative">
         <h3 class="text-center color-white p-v-1em title-home">Número de localidades con servicios de Telemedicina.</h3>
         <div class="ed-container">
             <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center">
@@ -68,14 +68,14 @@
                     </div>
 
                 </div>
-                <a href="{{ path_for('telemedicina.indicador.2') }}" class="btn deg-yellow">Más información</a>
+                <a href="{{ path_for('telemedicina.indicador.2') }}" class="btn deg-yellow p-absolute">Más información</a>
             </div>
         </div>
         <div class="flex l-cross-center l-justify-center p-v-2em">
             <p style="margin: 0">Fecha ultima actualización: {{ created_at | date("Y-m-d") }}</p>
         </div>
     </div>
-    <div class="ed-item s-100 l-50 bg-white-transparent color-white text-center fit-content">
+    <div class="ed-item s-100 l-50 bg-white-transparent color-white text-center fit-content p-relative">
         <h3 class="text-center color-white p-v-1em title-home">Número de prestaciones a pacientes de alto costo.</h3>
         <div class="ed-container">
             <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center l-column">
@@ -99,14 +99,14 @@
                         <p class="p-absolute">Cumplimiento</p>
                     </div>
                 </div>
-                <a href="{{ path_for('telemedicina.indicador.3') }}" class="btn deg-yellow">Más información</a>
+                <a href="{{ path_for('telemedicina.indicador.3') }}" class="btn deg-yellow p-absolute">Más información</a>
             </div>
         </div>
         <div class="flex l-cross-center l-justify-center p-v-2em">
             <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
         </div>
     </div>
-    <div class="ed-item s-100 l-50 bg-white-transparent color-white text-center fit-content">
+    <div class="ed-item s-100 l-50 bg-white-transparent color-white text-center fit-content p-relative">
         <h3 class="text-center color-white p-v-1em title-home">Número y Porcentaje de pacientes que se declaran satisfechos con el servicio.</h3>
         <div class="ed-container">
             <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center l-column">
@@ -131,7 +131,7 @@
                         <p class="p-absolute">Cumplimiento</p>
                     </div>
                 </div>
-                <a href="" class="btn deg-yellow">Más información</a>
+                <a href="" class="btn deg-yellow p-absolute">Más información</a>
             </div>
         </div>
         <div class="flex l-cross-center l-justify-center p-v-2em">
