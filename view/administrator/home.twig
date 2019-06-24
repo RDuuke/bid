@@ -6,7 +6,9 @@
 {% block content %}
     <div class="ed-tiem s-100 bg-white p-all-2rem fill-content">
         <a href="{{ path_for('panel') }}" class="btn deg-yellow">Volver</a>
-        <a href="{{ path_for('panel.user.list') }}" class="btn deg-green">Usuarios</a>
+        {% if (user.institution == administrador) %}
+            <a href="{{ path_for('panel.user.list') }}" class="btn deg-green">Usuarios</a>
+        {% endif %}
         <br>
         <br>
         {% if (user.institution == administrador or user.institution == teleducacion) %}
@@ -79,6 +81,7 @@
                 </form>
             </div>
         </div>
+        {% if (user.institution == administrador) %}
         <div class="ed-container">
             <h3>List de enfermedades de alto costo</h3>
             <form action="{{ path_for('file.list.high.diseases') }}" method="post" enctype="multipart/form-data">
@@ -88,6 +91,7 @@
                 <div id="response-algoritmos"></div>
             </form>
         </div>
+        {% endif %}
         <hr>
         {% endif %}
         {% if data %}

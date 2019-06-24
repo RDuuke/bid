@@ -18,19 +18,13 @@
     </div>
     <div class="ed-item s-100 l-40 p-v-10 l-cross-center l-main-end">
         <nav class="menu">
-            {% if auth.institution == telemedicina or auth.institution == administrador %}
                 <a href="{{ path_for('telemedicina.index') }}">Telemedicina</a>
-            {% endif %}
-            {% if auth.institution == teleasistencia or auth.institution == administrador %}
                 <a href="{{ path_for('teleasistencia.index') }}">Teleasistencia</a>
-            {% endif %}
-            {% if auth.institution == teleducacion or auth.institution == administrador %}
                 <a href="{{ path_for('teleducacion.index') }}">Teleducación</a>
-            {% endif %}
         </nav>
     </div>
     <div class="ed-item s-100 l-20 p-v-10 l-cross-center l-main-end">
-        {% if auth.institution == teleducacion or auth.institution == administrador %}
+        {% if (auth.institution != visualisador or auth.institution == administrador %}
             <a href="{{ path_for('panel.administrator') }}" class="btn deg-yellow">Administrar</a>
         {% endif %}
         <a class="btn sing-out deg-yellow" href="{{ path_for('logout') }}"><img src="{{ base_url() }}/images/sing-out.svg" alt=""></a>

@@ -29,11 +29,12 @@ $container["view"] = function ($container) {
 
       $view->getEnvironment()->addGlobal("types", \Bid\Tools\Tools::$type);
       $view->getEnvironment()->addGlobal("flash", $container->flash);
-      $view->getEnvironment()->addGlobal("auth", $_SESSION['user_bid']);
+      //$view->getEnvironment()->addGlobal("auth", $_SESSION['user_bid']);
       $view->getEnvironment()->addGlobal("administrador", \Bid\Tools\Tools::Administrador);
       $view->getEnvironment()->addGlobal("teleasistencia", \Bid\Tools\Tools::Teleasistencia);
       $view->getEnvironment()->addGlobal("telemedicina", \Bid\Tools\Tools::Telemedicina);
       $view->getEnvironment()->addGlobal("teleducacion", \Bid\Tools\Tools::Teleducacion);
+      $view->getEnvironment()->addGlobal("visualisador", \Bid\Tools\Tools::Visualizador);
       $view->getEnvironment()->addGlobal("user", $_SESSION["user_bid"]);
 
       return $view;

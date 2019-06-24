@@ -17,6 +17,7 @@ class Tools
     const Telemedicina = 'telemed';
     const Teleasistencia = 'teleasis';
     const Administrador = 'admin';
+    const Visualizador = 'visua';
 
     const read = "1";
     const write = "1";
@@ -37,7 +38,8 @@ class Tools
             'teledu' => 'Teleducación',
             'telemed' => 'Telemedicina',
             'teleasis' => 'Teleasistencia',
-            'admin' => 'Administrador'
+            'admin' => 'Administrador',
+            'visua' => 'Visualizador'
     ];
 
     static function estudiantes()
