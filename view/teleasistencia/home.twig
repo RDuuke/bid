@@ -29,14 +29,14 @@
                 <a href="{{ path_for('teleasistencia.indicador.1') }}" class="btn deg-yellow">Más información</a>
             </div>
         </div>
-        <div class="flex l-cross-center l-justify-center p-v-2em">
+        <div class="flex l-cross-center p-v-2em">
             <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
         </div>
     </div>
     <div class="ed-item s-100 l-50  bg-white-transparent text-center color-white fit-content">
         <h3 class="text-center color-white p-v-1em title-home">Número de pacientes vinculados al programa de Teleasistencia domiciliaria</h3>
         <div class="ed-container">
-            <div class="ed-item s-100 l-50 flex l-cross-center l-justify-center">
+            <div class="ed-item s-100 l-50 flex l-cross-center">
                 <h3 class="meta-numero">{{ indicador2.total }}</h3>
                 <div class="range big" data-max="{{ indicador2.meta }}" data-valor="{{ indicador2.total }}" data-background="#ED1A4A" style="width: 90%" data-label="Meta total"></div>
             </div>
@@ -55,7 +55,7 @@
                 <a href="{{ path_for('teleasistencia.indicador.2') }}" class="btn deg-yellow">Más información</a>
             </div>
         </div>
-        <div class="flex l-cross-center l-justify-center p-v-2em">
+        <div class="flex l-cross-center p-v-2em">
             <p style="margin: 0">Fecha ultima actualización: {{ created_at | date("Y-m-d") }}</p>
         </div>
     </div>
@@ -81,7 +81,7 @@
                 <a href="{{ path_for('teleasistencia.indicador.3') }}" class="btn deg-yellow">Más información</a>
             </div>
         </div>
-        <div class="flex l-cross-center l-justify-center p-v-2em">
+        <div class="flex l-cross-center p-v-2em">
             <p style="margin: 0">Fecha ultima actualización: {{ "now"|date("Y-m-d") }}</p>
         </div>
     </div>
