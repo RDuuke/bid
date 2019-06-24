@@ -26,6 +26,9 @@ function range_init(config = {
         } else {
             config.valor = calculate_valor(config.maximo, config.valor);
         }
+        if (config.valor < 10) {
+            left: 0;
+        }
         if (element.getAttribute("data-background")) {
             config.background = element.getAttribute("data-background");
         }
