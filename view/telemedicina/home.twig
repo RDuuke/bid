@@ -48,7 +48,14 @@
                 <h3 class="meta-numero">{{ indicador2.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
                     <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">{{ indicador2.porcentaje }}%</div>
+                        <div class="ldBar label-center" data-preset="circle"
+                             data-value="{{ telemedicina.indicador2.porcentaje }}"
+                             style="width:80%;height:80%"
+                             data-stroke-width="10"
+                             data-stroke="#FCE61D"
+                             data-stroke-trail="#F01246"
+                             data-stroke-trail-width="15"
+                        ></div>
                     </div>
                     <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
                         <p class="p-absolute">Cumplimiento</p>

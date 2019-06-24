@@ -91,6 +91,7 @@ label[for="change_password"]
 }
 .title-home {
     font-weight: 100;
+    font-size: 1.5em;
 }
 .meta, .meta-numero {
     color: white;
@@ -133,6 +134,5 @@ p {
     padding: .5em 0;
 }
 .c3-chart-arc text {
-    font-size: 2em;
-    color: #ED1A4A;
+    fill: #ED1A4A;
 }
