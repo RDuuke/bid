@@ -7,14 +7,19 @@
     text-align: center;
     box-sizing: padding-box;
     padding: .5em;
-    min-height: 90%;
+    min-height: 575px;
 }
 .card-stats h2 {
-    font-size: 3.5em;
+    font-size: 3em;
 }
 .card-stats h3 {
     font-size: 2em;
     border-bottom: 1px solid white;
+}
+.card-stats small {
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-bottom: 15px;
 }
 .card-stats.yellow {
     background-image: url("../images/bg-yellow.png");

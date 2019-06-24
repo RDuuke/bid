@@ -16,7 +16,7 @@
 
     <div class="ed-item s-100 l-80">
         <div class="ed-container full">
-            <div class="ed-item s-100 l-1-3">
+            <div class="ed-item s-100 l-1-3 no-padding">
                 <div class="card-stats yellow">
                     <h3>Telemedicina</h3>
                     <span class="update-date">{{ 'now' | date("M d") }} de {{ 'now' | date('Y') }}</span>
@@ -32,18 +32,18 @@
                          data-stroke-trail="#F01246"
                          data-stroke-trail-width="15"
                     ></div>
-                    <br>
                     <h4>Cumplimiento del indicador</h4>
+                    <br>
                     <a href="{{ path_for('telemedicina.index') }}" class="btn deg-yellow">Más información</a>
                 </div>
             </div>
-            <div class="ed-item s-100 l-1-3">
+            <div class="ed-item s-100 l-1-3 no-padding">
                 <div class="card-stats green">
                     <h3>Teleasistencia</h3>
                     <span class="update-date">{{ 'now' | date("M d") }} de {{ 'now' | date('Y') }}</span>
                     <small>Fecha última actualización</small>
                     <h2>{{ teleasistencia.total }}</h2>
-                    <small>Número de nuevos algoritmos generados</small>
+                    <small>Nuevos algoritmos generados</small>
                     <div class="range" data-max="{{ teleasistencia.meta }}" data-valor="{{ teleasistencia.total }}" data-background="#014D6F" style="width: 90%" data-label="Meta total"></div>
                     <div class="ldBar label-center" data-preset="circle"
                          data-value="{{ teleasistencia.porcentaje }}"
@@ -53,18 +53,18 @@
                          data-stroke="#39B54A"
                          data-stroke-trail="#014D6F"
                     ></div>
+                    <h4>Cumplimiento del indicador</h4>
                     <br>
-                    <h4>Avance del proyecto</h4>
                     <a href="{{ path_for('teleasistencia.index') }}" class="btn deg-green">Más información</a>
                 </div>
             </div>
-            <div class="ed-item s-100 l-1-3">
+            <div class="ed-item s-100 l-1-3 no-padding">
                 <div class="card-stats blue">
                     <h3>Teleducación</h3>
                     <span class="update-date">{{ 'now' | date("M d") }} de {{ 'now' | date('Y') }}</span>
                     <small>Fecha última actualización</small>
                     <h2>{{ teleducacion.total }}</h2>
-                    <small>Número de profesionales de la salud capacitados</small>
+                    <small>Profesionales da la salud capacitados</small>
                     <div class="range" data-max="1000" data-valor="{{ teleducacion.total }}" data-background="#FCE61D" style="width: 90%" data-label="Meta total"></div>
                     <div class="ldBar label-center" data-preset="circle"
                          data-value="{{ teleducacion.porcentaje }}"
@@ -74,8 +74,8 @@
                          data-stroke="#FCE61D"
                          data-stroke-trail="#014D6F"
                     ></div>
+                    <h4>Cumplimiento del indicador</h4>
                     <br>
-                    <h4>Avance del proyecto</h4>
                     <a href="{{ path_for('teleducacion.index') }}" class="btn deg-blue">Más información</a>
                 </div>
             </div>

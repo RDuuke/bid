@@ -27,7 +27,7 @@
 }
 
 body {
-    background-image: url("../images/fondo-1.png");
+    background-image: url("../images/fondo_final.jpg");
     display: flex;
     justify-content: center;
     flex-direction: column;
