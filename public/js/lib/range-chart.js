@@ -39,8 +39,6 @@ function range_init(config = {
         }
 
         area_paint.style.width = config.valor + "%";
-        area_paint.style.backgroundColor = config.background;
-        circle.style.backgroundColor = config.background;
         if (left != 0) {
             circle.style.left = "calc(" +config.valor +"% - "+left+"px)";
         }
@@ -48,11 +46,13 @@ function range_init(config = {
         if (config.valor > 60) {
             config.background = "black";
         }
-        label.style.color = config.background;
         area_total.classList.add("area-total");
         area_paint.classList.add("area-paint");
         circle.classList.add("make")
         label.classList.add("label");
+        circle.style.backgroundColor = config.background;
+        area_paint.style.backgroundColor = config.background;
+        label.style.color = config.background;
         area_total.append(circle);
         area_total.append(label);
         area_total.append(area_paint);
