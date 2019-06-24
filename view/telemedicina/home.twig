@@ -22,8 +22,14 @@
                 <h3 class="meta-numero">{{ indicador1.meta }}</h3>
                 <div class="ed-container s-100 m-2em-b">
                     <div class="ed-item s-100 l-50 flex justify-flex-end">
-                        <div class="porcentaje">{{ indicador1.porcentaje }}%</div>
-                    </div>
+                        <div class="ldBar label-center" data-preset="circle"
+                             data-value="{{ indicador1.porcentaje }}"
+                             style="width:100%;height:100%"
+                             data-stroke-width="10"
+                             data-stroke="#FCE61D"
+                             data-stroke-trail="#F01246"
+                             data-stroke-trail-width="15"
+                        ></div>                    </div>
                     <div class="ed-item s-100 l-50 p-relative flex justify-flex-end align-center">
                         <p class="p-absolute">Cumplimiento</p>
                     </div>
@@ -139,49 +145,6 @@
 <script src="{{ base_url() }}/js/lib/d3-5.8.2.min.js"></script>
 <script src="{{ base_url() }}/js/lib/c3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
-<script>
-/*
-    var ctx = document.getElementById('line').getContext('2d');
-
-    var myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels : [
-            'Febrero 2018', 'Marzo 2018', 'Julio 2018', 'Agosto 2018', 'Septiembre 2018', 'Octubre 2018', 'Noviembre 2018', 'Enero 2019'
-        ],
-         datasets: [{
-            label: 'Número de profesionales capacitados',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [
-                150, 20, 30, 45, 180, 90, 200, 160
-            ],
-            backgroundColor : "#CCC"
-        }]
-    },
-    options : {
-        legend : {
-            labels: {
-                fontColor: '#FFF'
-            }
-        },
-        scales : {
-            yAxes : [{
-                ticks : {
-                    fontColor: 'white'
-                }
-            }],
-            xAxes : [{
-                ticks : {
-                    fontColor: 'white'
-                }
-            }]
-        }
-    }
-
-});
-*/
-</script>
 <script>
 var chart = c3.generate({
     data: {
@@ -199,7 +162,7 @@ var chart = c3.generate({
             show: false // to turn off the min/max labels.
        },
     },
-    size : 300,
+    size : 500,
     color: {
         pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
         threshold: {
