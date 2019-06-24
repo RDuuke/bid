@@ -21,7 +21,7 @@
                     <div class="ed-item s-100 l-70 flex justify-flex-end">
                         <div class="ldBar label-center" data-preset="circle"
                              data-value="{{ indicador1.porcentaje }}"
-                             style="width:80%;height:80%"
+                             style="width:100%;height:100%"
                              data-stroke-width="10"
                              data-stroke-trail-width="15"
                              data-stroke="#39B54A"
@@ -54,7 +54,7 @@
                     <div class="ed-item s-100 l-70 flex justify-flex-end">
                         <div class="ldBar label-center" data-preset="circle"
                              data-value="{{ indicador2.porcentaje }}"
-                             style="width:80%;height:80%"
+                             style="width:100%;height:100%"
                              data-stroke-width="10"
                              data-stroke-trail-width="15"
                              data-stroke="#39B54A"
@@ -87,7 +87,7 @@
                     <div class="ed-item s-100 l-70 flex justify-flex-end">
                         <div class="ldBar label-center" data-preset="circle"
                              data-value="{{ indicador3.porcentaje }}"
-                             style="width:80%;height:80%"
+                             style="width:100%;height:100%"
                              data-stroke-width="10"
                              data-stroke-trail-width="15"
                              data-stroke="#39B54A"
@@ -128,7 +128,6 @@ var chart = c3.generate({
                 return value;
             },
             show: false, // to turn off the min/max labels.
-            size: 20
        },
     },
     color: {
@@ -145,7 +144,7 @@ var chart = c3.generate({
       }
     },
     size: {
-        height: 180
+        height: 250
     },
     tooltip : {
         contents : function(d) {
