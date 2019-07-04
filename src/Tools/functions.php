@@ -104,7 +104,7 @@
 
     function truncateTable(string $table)
     {
-        $pdo = Manager::connection("db")->getPdo();
+        $pdo = Manager::connection()->getPdo();
         if(!$pdo->query("TRUNCATE TABLE {$table}")) {
             return false;
         }
