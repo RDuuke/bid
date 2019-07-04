@@ -18,6 +18,10 @@
             </div>
             <div class="ed-item s-100 l-50">
                 <h3>Cargar archivo de interacciones en plataforma de Teleducación.</h3>
+                <p><a href="{{ path_for("file.download", { filename :  "interacciones_teleducacion", ext : "csv" }) }}" target="_blank " download="true">
+                        Descargar plantilla
+                    </a>
+                </p>
                 <form action="{{ path_for("file.interactions") }}" method="post" enctype="multipart/form-data">
                     <input type="file" name="archive" required>
                     <br>
@@ -28,6 +32,10 @@
             </div>
             <div class="ed-item s-100 l-50">
                 <h3>Cargar archivo de cursos.</h3>
+                <p><a href="{{ path_for("file.download", { filename :  "cursos_extension", ext : "csv" }) }}" target="_blank " download="true">
+                        Descargar plantilla
+                    </a>
+                </p>
                 <form action="{{ path_for("file.courses") }}" method="post" enctype="multipart/form-data">
                     <input type="file" name="archive" required>
                     <br>
@@ -46,6 +54,10 @@
             </div>
             <div class="ed-item s-100 l-50">
                 <h3>Algoritmos de teleasistencia</h3>
+                <p><a href="{{ path_for("file.download", { filename :  "algoritmos_teleasistencia", ext : "csv" }) }}" target="_blank " download="true">
+                        Descargar plantilla
+                    </a>
+                </p>
                 <form action="{{ path_for('file.algorithms') }}" method="post" enctype="multipart/form-data">
                     <input type="file" name="archive" required>
                     <br><br>
@@ -55,6 +67,10 @@
             </div>
             <div class="ed-item s-100 l-50">
                 <h3>Pacientes de teleasistencias</h3>
+                <p><a href="{{ path_for("file.download", { filename :  "pacientes_teleasistencia", ext : "csv" }) }}" target="_blank " download="true">
+                        Descargar plantilla
+                    </a>
+                </p>
                 <form action="{{ path_for('file.patients') }}" method="post" enctype="multipart/form-data">
                     <input type="file" name="archive" required>
                     <br><br>
@@ -64,6 +80,11 @@
             </div>
             <div class="ed-item s-100 l-50">
                 <h3>Gestion llamadas de teleasistencias</h3>
+                <p>
+                    <a href="{{ path_for("file.download", { filename :  "llamadas_gestionadas_teleasistencia", ext : "csv" }) }}" target="_blank " download="true">
+                        Descargar plantilla
+                    </a>
+                </p>
                 <form action="{{ path_for('file.call.management') }}" method="post" enctype="multipart/form-data">
                     <input type="file" name="archive" required>
                     <br><br>
@@ -73,6 +94,11 @@
             </div>
             <div class="ed-item s-100 l-50">
                 <h3>Llamadas patalogía de teleasistencia</h3>
+                <p>
+                    <a href="{{ path_for("file.download", { filename :  "llamadas_gestionadas_patologia", ext : "csv" }) }}" target="_blank " download="true">
+                        Descargar plantilla
+                    </a>
+                </p>
                 <form action="{{ path_for('file.call.pathology') }}" method="post" enctype="multipart/form-data">
                     <input type="file" name="archive" required>
                     <br><br>
@@ -86,6 +112,11 @@
         <div class="ed-container">
             <div class="ed-item s-100">
                 <h3>List de enfermedades de alto costo</h3>
+                <p>
+                    <a href="{{ path_for("file.download", { filename :  "listado_de_enfermedades_alto_costo", ext : "xlsx"}) }}" target="_blank " download="true">
+                        Descargar plantilla
+                    </a>
+                </p>
                 <form action="{{ path_for('file.list.high.diseases') }}" method="post" enctype="multipart/form-data">
                     <input type="file" name="archive" required>
                     <br><br>

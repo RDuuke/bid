@@ -15,6 +15,7 @@ use function Bid\Tools\moveUploadFile;
 use function Bid\Tools\truncateTable;
 use Slim\Http\Response;
 use Slim\Http\Request;
+use Slim\Http\Stream;
 use Twig\Util\TemplateDirIterator;
 
 class DocumentController extends Controller
@@ -365,6 +366,22 @@ class DocumentController extends Controller
         ]);
 
     }
+
+    public function downloadFile(Request $request, Response $response, $args)
+    {
+        $fh = fopen(FILES . $args["filename"] . ".". $args["ext"], "rb");
+        $stream = new Stream($fh);
+        return $response->withHeader('Content-Type', 'application/octet-stream')
+            ->withHeader('Content-Type', 'application/download')
+            ->withHeader('Content-Description', 'File Transfer')
+            ->withHeader('Content-Transfer-Encoding', 'binary')
+            ->withHeader('Content-Disposition', 'attachment; filename="' . $args["filename"] . '"')
+            ->withHeader('Expires', '0')
+            ->withHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+            ->withHeader('Pragma', 'public')
+            ->withBody($stream);
+    }
+
     protected  function File(Request $request)
     {
 
