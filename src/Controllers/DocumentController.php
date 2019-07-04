@@ -12,6 +12,7 @@ use Bid\Models\TeleduInterracion;
 use Bid\Models\TelemeHighCostDisease;
 use function Bid\Tools\getDataOfArchive;
 use function Bid\Tools\moveUploadFile;
+use function Bid\Tools\truncateTable;
 use Slim\Http\Response;
 use Slim\Http\Request;
 use Twig\Util\TemplateDirIterator;
@@ -29,20 +30,37 @@ class DocumentController extends Controller
             $filename = moveUploadFile($archive);
              if (is_string($filename)) {
                  $data = getDataOfArchive($filename);
-                 for ($row = 1; $row < $data->highestRow; $row ++) {
-                     $value = [
-                         "youtube" => $data->whorsheet[$row][0],
-                         "saludando" => $data->whorsheet[$row][1],
-                         "perlas_clinicas" => $data->whorsheet[$row][2],
-                         "atulado" => $data->whorsheet[$row][3],
-                         "fb_live" => $data->whorsheet[$row][4]
-                     ];
+                 if (truncateTable("teledu_interacciones")) {
+                     for ($row = 1; $row < $data->highestRow; $row ++) {
+                         $value = [
+                             "youtube" => $data->whorsheet[$row][0],
+                             "saludando" => $data->whorsheet[$row][1],
+                             "perlas_clinicas" => $data->whorsheet[$row][2],
+                             "atulado" => $data->whorsheet[$row][3],
+                             "fb_live" => $data->whorsheet[$row][4]
+                         ];
 
-                     if (TeleduInterracion::create($value)) {
-                         array_push($this->creators, $value);
-                     } else {
-                         array_push($this->creators, $value);
+                         if (TeleduInterracion::create($value)) {
+                             array_push($this->creators, $value);
+                         } else {
+                             array_push($this->creators, $value);
+                         }
                      }
+                     return $this->view->render($response, "administrator/home.twig", [
+                             "data" => [
+                                 "errors" => [
+                                     "total" => count($this->errors),
+                                     "register" => $this->errors
+                                 ],
+                                 "creators" => [
+                                     "total" => count($this->creators),
+                                     "register" => $this->creators
+                                 ],
+                             ],
+                             "code" => 200,
+                             "message" => "Upload archive csv.",
+                             "title_table" => "Interacciones en plataforma de Teleducación"
+                     ]);
                  }
                  return $this->view->render($response, "administrator/home.twig", [
                      "data" => [
@@ -56,7 +74,7 @@ class DocumentController extends Controller
                          ],
                      ],
                      "code" => 200,
-                     "message" => "Upload archive csv.",
+                     "message" => "Not truncate table",
                      "title_table" => "Interacciones en plataforma de Teleducación"
                  ]);
              }
@@ -66,13 +84,29 @@ class DocumentController extends Controller
     function upLoadExtensionCourses (Request $request, Response $response)
     {
         $data = $this->File($request);
-
-        for($i = 1; $i < count($data); $i ++) {
-            if (ExtensionCourses::updateOrCreate(["codigo" => $data[$i][0]], ["codigo" => $data[$i][0], "nombre" => $data[$i][1]])) {
-                array_push($this->creators, $data[$i]);
-            } else {
-                array_push($this->errors, $data[$i]);
+        if(truncateTable("cursos_extension")) {
+            for($i = 1; $i < count($data); $i ++) {
+                if (ExtensionCourses::updateOrCreate(["codigo" => $data[$i][0]], ["codigo" => $data[$i][0], "nombre" => $data[$i][1]])) {
+                    array_push($this->creators, $data[$i]);
+                } else {
+                    array_push($this->errors, $data[$i]);
+                }
             }
+            return $this->view->render($response, "administrator/home.twig", [
+                "data" => [
+                    "errors" => [
+                        "total" => count($this->errors),
+                        "register" => $this->errors
+                    ],
+                    "creators" => [
+                        "total" => count($this->creators),
+                        "register" => $this->creators
+                    ],
+                ],
+                "code" => 200,
+                "message" => "Upload archive csv.",
+                "title_table" => "Cargar archivo de cursos"
+            ]);
         }
         return $this->view->render($response, "administrator/home.twig", [
             "data" => [
@@ -86,7 +120,7 @@ class DocumentController extends Controller
                 ],
             ],
             "code" => 200,
-            "message" => "Upload archive csv.",
+            "message" => "Not truncate table.",
             "title_table" => "Cargar archivo de cursos"
         ]);
     }
@@ -94,14 +128,31 @@ class DocumentController extends Controller
     function uploadAlgorithms(Request $request, Response $response)
     {
         $data = $this->File($request);
+        if (truncateTable("teleasis_algoritmos")) {
 
-        for ($i = 1; $i < count($data); $i++) {
-            if (TeleasisAlgorithms::updateOrCreate(["algoritmo" => $data[$i][0]],
-                ["algotimo" => $data[$i][0], "fecha_creacion" => $data[$i][1]])) {
-                array_push($this->creators, $data[$i]);
-            } else {
-                array_push($this->errors, $data[$i]);
+            for ($i = 1; $i < count($data); $i++) {
+                if (TeleasisAlgorithms::updateOrCreate(["algoritmo" => $data[$i][0]],
+                    ["algotimo" => $data[$i][0], "fecha_creacion" => $data[$i][1]])) {
+                    array_push($this->creators, $data[$i]);
+                } else {
+                    array_push($this->errors, $data[$i]);
+                }
             }
+            return $this->view->render($response, "administrator/home.twig", [
+                "data" => [
+                    "errors" => [
+                        "total" => count($this->errors),
+                        "register" => $this->errors
+                    ],
+                    "creators" => [
+                        "total" => count($this->creators),
+                        "register" => $this->creators
+                    ],
+                ],
+                "code" => 200,
+                "message" => "Upload archive csv.",
+                "title_table" => "Algoritmos de teleasistencia"
+            ]);
         }
         return $this->view->render($response, "administrator/home.twig", [
             "data" => [
@@ -115,7 +166,7 @@ class DocumentController extends Controller
                 ],
             ],
             "code" => 200,
-            "message" => "Upload archive csv.",
+            "message" => "Not truncate table.",
             "title_table" => "Algoritmos de teleasistencia"
         ]);
     }
@@ -123,14 +174,31 @@ class DocumentController extends Controller
     function uploadPatients(Request $request, Response $response)
     {
         $data = $this->File($request);
+        if (truncateTable("teleasis_pacientes")) {
 
-        for ($i = 1; $i < count($data); $i++) {
-            if (TeleasisPatients::updateOrCreate(["patalogia" => $data[$i][0]],
-                ["patalogia" => $data[$i][0], "num_pacientes" => $data[$i][1]])) {
-                array_push($this->creators, $data[$i]);
-            } else {
-                array_push($this->errors, $data[$i]);
+            for ($i = 1; $i < count($data); $i++) {
+                if (TeleasisPatients::updateOrCreate(["patalogia" => $data[$i][0]],
+                    ["patalogia" => $data[$i][0], "num_pacientes" => $data[$i][1]])) {
+                    array_push($this->creators, $data[$i]);
+                } else {
+                    array_push($this->errors, $data[$i]);
+                }
             }
+            return $this->view->render($response, "administrator/home.twig", [
+                "data" => [
+                    "errors" => [
+                        "total" => count($this->errors),
+                        "register" => $this->errors
+                    ],
+                    "creators" => [
+                        "total" => count($this->creators),
+                        "register" => $this->creators
+                    ],
+                ],
+                "code" => 200,
+                "message" => "Upload archive csv.",
+                "title_table" => "Pacientes de teleasistencias"
+            ]);
         }
         return $this->view->render($response, "administrator/home.twig", [
             "data" => [
@@ -144,7 +212,7 @@ class DocumentController extends Controller
                 ],
             ],
             "code" => 200,
-            "message" => "Upload archive csv.",
+            "message" => "Not truncate table.",
             "title_table" => "Pacientes de teleasistencias"
         ]);
     }
@@ -152,18 +220,35 @@ class DocumentController extends Controller
     function uploadCallManagement(Request $request, Response $response)
     {
         $data = $this->File($request);
+        if (truncateTable("teleasis_gestion_llamadas")) {
 
-        for ($i = 1; $i < count($data); $i++) {
-            if (TeleasisCallManagement::updateOrCreate(["periodo" => $data[$i][0]],
-                [
-                    "periodo" => $data[$i][0], "num_llamadas_gestionadas" => $data[$i][1],
-                    "llamada_saludable" => $data[$i][2], "linea" => $data[$i][3],
-                    "telepsicologia" => $data[$i][4]
-                ])) {
-                array_push($this->creators, $data[$i]);
-            } else {
-                array_push($this->errors, $data[$i]);
+            for ($i = 1; $i < count($data); $i++) {
+                if (TeleasisCallManagement::updateOrCreate(["periodo" => $data[$i][0]],
+                    [
+                        "periodo" => $data[$i][0], "num_llamadas_gestionadas" => $data[$i][1],
+                        "llamada_saludable" => $data[$i][2], "linea" => $data[$i][3],
+                        "telepsicologia" => $data[$i][4]
+                    ])) {
+                    array_push($this->creators, $data[$i]);
+                } else {
+                    array_push($this->errors, $data[$i]);
+                }
             }
+            return $this->view->render($response, "administrator/home.twig", [
+                "data" => [
+                    "errors" => [
+                        "total" => count($this->errors),
+                        "register" => $this->errors
+                    ],
+                    "creators" => [
+                        "total" => count($this->creators),
+                        "register" => $this->creators
+                    ],
+                ],
+                "code" => 200,
+                "message" => "Upload archive csv.",
+                "title_table" => "Gestion llamadas de teleasistencias"
+            ]);
         }
         return $this->view->render($response, "administrator/home.twig", [
             "data" => [
@@ -177,7 +262,7 @@ class DocumentController extends Controller
                 ],
             ],
             "code" => 200,
-            "message" => "Upload archive csv.",
+            "message" => "Not truncate table.",
             "title_table" => "Gestion llamadas de teleasistencias"
         ]);
     }
@@ -185,14 +270,31 @@ class DocumentController extends Controller
     function uploadCallPathology(Request $request, Response $response)
     {
         $data = $this->File($request);
+        if (truncateTable("teleasis_llamadas_patologia")) {
 
-        for ($i = 1; $i < count($data); $i++) {
-            if (TeleasisCallPathology::updateOrCreate(["patalogia" => $data[$i][0]],
-                ["patalogia" => $data[$i][0], "num_llamadas_saludable" => $data[$i][1]])) {
-                array_push($this->creators, $data[$i]);
-            } else {
-                array_push($this->errors, $data[$i]);
+            for ($i = 1; $i < count($data); $i++) {
+                if (TeleasisCallPathology::updateOrCreate(["patalogia" => $data[$i][0]],
+                    ["patalogia" => $data[$i][0], "num_llamadas_saludable" => $data[$i][1]])) {
+                    array_push($this->creators, $data[$i]);
+                } else {
+                    array_push($this->errors, $data[$i]);
+                }
             }
+            return $this->view->render($response, "administrator/home.twig", [
+                "data" => [
+                    "errors" => [
+                        "total" => count($this->errors),
+                        "register" => $this->errors
+                    ],
+                    "creators" => [
+                        "total" => count($this->creators),
+                        "register" => $this->creators
+                    ],
+                ],
+                "code" => 200,
+                "message" => "Upload archive csv.",
+                "title_table" => "Llamadas patalogía de teleasistencia"
+            ]);
         }
         return $this->view->render($response, "administrator/home.twig", [
             "data" => [
@@ -206,7 +308,7 @@ class DocumentController extends Controller
                 ],
             ],
             "code" => 200,
-            "message" => "Upload archive csv.",
+            "message" => "Not truncate table.",
             "title_table" => "Llamadas patalogía de teleasistencia"
         ]);
     }
@@ -214,9 +316,9 @@ class DocumentController extends Controller
     function listingHighCostDiseases(Request $request, Response $response)
     {
         $data = $this->File($request);
-
-        for($i = 0; $i < count($data); $i++) {
-            if (TelemeHighCostDisease::updateOrCreate([
+        if (truncateTable("telemed_enf_alto_costo")) {
+            for($i = 0; $i < count($data); $i++) {
+                if (TelemeHighCostDisease::updateOrCreate([
                     "idcie10" => $data[$i][0],
                     "codigo" => $data[$i][1]
                 ], [
@@ -224,13 +326,28 @@ class DocumentController extends Controller
                     "codigo" => $data[$i][1],
                     "descripcion" => $data[$i][2]
                 ])
-            ){
-                array_push($this->creators, $data[$i]);
-            } else {
-                array_push($this->errors, $data[$i]);
+                ){
+                    array_push($this->creators, $data[$i]);
+                } else {
+                    array_push($this->errors, $data[$i]);
+                }
             }
+            return $this->view->render($response, "administrator/home.twig", [
+                "data" => [
+                    "errors" => [
+                        "total" => count($this->errors),
+                        "register" => $this->errors
+                    ],
+                    "creators" => [
+                        "total" => count($this->creators),
+                        "register" => $this->creators
+                    ]
+                ],
+                "code" => 200,
+                "message" => "Upload archive xlsx.",
+                "title_table" => "Listado de enfermedades de alto costo"
+            ]);
         }
-
         return $this->view->render($response, "administrator/home.twig", [
             "data" => [
                 "errors" => [
@@ -243,12 +360,14 @@ class DocumentController extends Controller
                 ]
             ],
             "code" => 200,
-            "message" => "Upload archive xlsx.",
+            "message" => "Not truncate table.",
             "title_table" => "Listado de enfermedades de alto costo"
         ]);
+
     }
     protected  function File(Request $request)
     {
+
         $uploadFiles = $request->getUploadedFiles();
         $archive = $uploadFiles['archive'];
         if ($archive->getError() == UPLOAD_ERR_OK) {
@@ -262,4 +381,5 @@ class DocumentController extends Controller
         }
         return $archive->getError();
     }
+
 }

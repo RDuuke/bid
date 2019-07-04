@@ -2,7 +2,7 @@
 
 $container = $app->getContainer();
 $capsule = new \Illuminate\Database\Capsule\Manager();
-$capsule->addConnection($container["settings"]["db"]);
+$capsule->addConnection($container["settings"]["db"], "db");
 $capsule->addConnection($container["settings"]["db_extension"], "db_extension");
 $capsule->addConnection($container["settings"]["db_abiertas_moodle"], "db_abiertas_moodle");
 $capsule->addConnection($container["settings"]["db_abiertas_gestion"], "db_abiertas_gestion");
