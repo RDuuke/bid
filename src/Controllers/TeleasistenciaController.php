@@ -46,14 +46,10 @@ class TeleasistenciaController extends Controller
     function indicador3 (Request $request, Response $response)
     {
         $p = TeleasisCallPathology::all(["patalogia", "num_llamadas_saludable"])->toArray();
-        dump($p);
         $pacientes = [];
         foreach ($p as $k => $value) {
-            array_push($pacientes, [$value["patalogia"], $value["num_pacientes"]]);
+            array_push($pacientes, [$value["patalogia"], $value["num_llamadas_saludable"]]);
         }
-
-        dump($pacientes);
-        die;
         $g = TeleasisCallManagement::all(["periodo", "num_llamadas_gestionadas"])->toArray();
         $call_g = [];
         foreach ($g as $k => $value) {
