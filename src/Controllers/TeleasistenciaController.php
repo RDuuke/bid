@@ -5,6 +5,7 @@ namespace Bid\Controllers;
 
 use Bid\Models\TeleasisAlgorithms;
 use Bid\Models\TeleasisCallManagement;
+use Bid\Models\TeleasisCallPathology;
 use Bid\Models\TeleasisPatients;
 use function Bid\Tools\getMothSpanish;
 use Bid\Tools\Tools;
@@ -44,7 +45,7 @@ class TeleasistenciaController extends Controller
 
     function indicador3 (Request $request, Response $response)
     {
-        $p = TeleasisPatients::all(["patalogia", "num_pacientes"])->toArray();
+        $p = TeleasisCallPathology::all(["patalogia", "num_llamadas_saludable"])->toArray();
         dump($p);
         $pacientes = [];
         foreach ($p as $k => $value) {
