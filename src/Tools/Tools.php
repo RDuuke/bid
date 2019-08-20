@@ -297,7 +297,7 @@ from (((((((((((((((visita as v
   left join cup on ca.idcup = cup.idcup)
   left join eps on eps.ideps = p2.ideps)
   left join motivodevolucioncupanexo3 as md on md.idmotivodevolucioncupanexo3 = ca.idmotivodevolucioncupanexo3)
-where ca.idestadocupanexo3 in ('1','2') and  nc.enviada  in ('true') and a.enviado in ('true')  and (not ca.idnotaclinicarespuesta is NULL)"));
+where ca.idestadocupanexo3 in ('1','2') and  nc.enviada  in ('true') and a.enviado in ('true')  and (not ca.idnotaclinicarespuesta is NULL)")->count());
         die;
         $patients = self::sqlTelemedicina("COUNT (*) AS total");
         return [
