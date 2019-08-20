@@ -3,6 +3,7 @@
     namespace Bid\Tools;
 
     use Bid\Exceptions\moveFileException;
+    use Illuminate\Database\Capsule\Manager;
     use PhpOffice\PhpSpreadsheet\IOFactory;
     use PhpOffice\PhpSpreadsheet\Reader\Csv;
 
@@ -101,3 +102,11 @@
 
     }
 
+    function truncateTable(string $table)
+    {
+        $pdo = Manager::connection()->getPdo();
+        if(!$pdo->query("TRUNCATE TABLE {$table}")) {
+            return false;
+        }
+        return true;
+    }

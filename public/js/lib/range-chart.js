@@ -19,14 +19,14 @@ function range_init(config = {
             config.maximo = element.getAttribute("data-max");
         }
         if (element.getAttribute("data-valor")) {
-            config.valor = calculate_valor(config.maximo, element.getAttribute("data-valor"))
+            config.valor = calculate_valor(config.maximo, element.getAttribute("data-valor"));
             if (config.valor > 100) {
                 config.valor = 100;
             }
         } else {
             config.valor = calculate_valor(config.maximo, config.valor);
         }
-        if (config.valor < 10) {
+        if (config.valor < 5) {
             left = 0;
         }
         if (element.getAttribute("data-background")) {
@@ -39,7 +39,7 @@ function range_init(config = {
         }
 
         area_paint.style.width = config.valor + "%";
-        if (left != 0) {
+        if (left > 0) {
             circle.style.left = "calc(" +config.valor +"% - "+left+"px)";
         }
         label.innerText = config.label;
