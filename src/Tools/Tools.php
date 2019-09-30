@@ -264,7 +264,7 @@ class Tools
 
     static public function telemedicina_indicador_1_more()
     {
-        $attention = self::sqlTelemedicina("to_char(cupanexo3.fecha, 'YYYY-MM') as ANO_MES, COUNT (*) as total", "ANO_MES", "ANO_MES");
+        $attention = self::sqlTelemedicina("to_char(cupanexo3.fechacreacion, 'YYYY-MM') as ANO_MES, COUNT (*) as total", "ANO_MES", "ANO_MES");
         $patologias = self::sqlTelemedicina("cie10.codigo as COD, cie10.descripcion as patologia, count(*) as num_atenciones", "COD, patologia", "num_atenciones desc");
         return [
             "atentions" => $attention,
@@ -325,7 +325,7 @@ class Tools
             ->whereIn(
                 "cie10.codigo", TelemeHighCostDisease::all("codigo")->toArray()
             )
-            ->where("notaclinica.fecha", ">=", $fecha)
+            ->where("notaclinica.fechacreacion", ">=", $fecha)
             ->first();
 
         return [
