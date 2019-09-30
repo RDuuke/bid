@@ -261,7 +261,8 @@ class Tools
             ->leftJoin(Manager::raw("cup on ca.idcup  = cup.idcup"))
             ->leftJoin(Manager::raw("eps on eps.ideps = p2.ideps"))
             ->leftJoin(Manager::raw("motivodevolucioncupanexo3 as md on md.idmotivodevolucioncupanexo3 = ca.idmotivodevolucioncupanexo3"))
-            ->where(Manager::raw("ca.idestadocupanexo3 in ('1','2') and  nc.enviada  in ('true') and a.enviado in ('true')  and (not ca.idnotaclinicarespuesta is NULL)"))->get()->count();
+            ->where(Manager::raw("ca.idestadocupanexo3 in ('1','2') and  nc.enviada  in ('true') and a.enviado in ('true')  and (not ca.idnotaclinicarespuesta is NULL)"))->toSql();
+        print_r($patients);die;
         return [
             "total" => $patients,
             "porcentaje" => round(($patients * 100)/self::meta_telemedicina_indicador_1),
