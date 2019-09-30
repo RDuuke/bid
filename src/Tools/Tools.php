@@ -245,12 +245,22 @@ class Tools
             regexp_replace(nc.analisis, E'[\\n\\r]+', ' ', 'g' ) as analisis, regexp_replace(nc.plan, E'[\\n\\r]+', ' ', 'g' ) as plan, cie10.codigo as cie10_codigo, cie10.descripcion as cie10_descripcion,
             s.nombresede as sede, c.nombre as ciudad, c.codigociudad, ca.idnotaclinicarespuesta, p3.idusuario, ca.idusuarioresidente,  ca.fechaactualizacionusuarioresidente, md.nombre as motivo_devolucion,
             cup.codigo as cup_codigo, cup.descripcion as cup_descripcion, ca.fechaautorizacion, ca.numeroautorizacion, ca.idusuarioautorizador, ca.idestadoautorizacioncupanexo3"))
-            ->table(Manager::raw("(((((((((((((((visita as v join encuentro as e on v.idvisita = e.idvisita) join anexo3 as a on e.idencuentro = a.idanexo3) join cupanexo3 as ca on a.idanexo3 = ca.idanexo3)
-            join paciente as p on v.idpaciente = p.idpaciente) join persona as p2 on p.idpersona = p2.idpersona)
-            join notaclinica as nc on a.idnotaclinica = nc.idnotaclinica) join tipoidentificacion as ti on ti.idtipoidentificacion = p2.idtipodocumento) join cie10 on nc.idcie10principal = cie10.idcie10)
-            join sedeinstitucion as s on e.idsede = s.idsede) join ciudad as c on s.idmunicipio = c.idciudad) left join departamento as d2 on c.iddepartamento = d2.iddepartamento)
-            join prestador as p3 on e.idprestador = p3.idprestador) left join cup on ca.idcup = cup.idcup) left join eps on eps.ideps = p2.ideps) 
-            left join motivodevolucioncupanexo3 as md on md.idmotivodevolucioncupanexo3 = ca.idmotivodevolucioncupanexo3)"))->get()->count();
+            ->table(Manager::raw("visita as v")
+            ->join("encuentro as e", "v.idvisita", "=", "e.idvisita")
+            ->join("anexo3 as a", "e.idencuentro", "=",  "a.idanexo3")
+            ->join("cupanexo3 as ca", "a.idanexo3", "=", "ca.idanexo3")
+            ->join("paciente as p", "v.idpaciente", "=", "p.idpaciente")
+            ->join("persona as p2", "p.idpersona", "=", "p2.idpersona")
+            ->join("notaclinica as nc", "a.idnotaclinica", "=", "nc.idnotaclinica")
+            ->join("tipoidentificacion as ti", "ti.idtipoidentificacion", "=", "p2.idtipodocumento")
+            ->join("cie10", "nc.idcie10principal", "=", "cie10.idcie10")
+            ->join("sedeinstitucion as s", "e.idsede", "=", "s.idsede")
+            ->join("ciudad as c", "s.idmunicipio", "=", "c.idciudad")
+            ->leftJoin("departamento as d2", "c.iddepartamento", "=", "d2.iddepartamento")
+            ->join("prestador as p3", "e.idprestador", "=", "p3.idprestador")
+            ->leftJoin("cup", "ca.idcup", "=", "cup.idcup")
+            ->leftJoin("eps". "eps.ideps", "=", "p2.ideps")
+            ->leftJoin("motivodevolucioncupanexo3 as md", "md.idmotivodevolucioncupanexo3", "=", "ca.idmotivodevolucioncupanexo3")->get()->count();
         return [
             "total" => $patients,
             "porcentaje" => round(($patients * 100)/self::meta_telemedicina_indicador_1),
