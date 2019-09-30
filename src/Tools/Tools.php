@@ -245,7 +245,7 @@ class Tools
             regexp_replace(nc.analisis, E'[\\n\\r]+', ' ', 'g' ) as analisis, regexp_replace(nc.plan, E'[\\n\\r]+', ' ', 'g' ) as plan, cie10.codigo as cie10_codigo, cie10.descripcion as cie10_descripcion,
             s.nombresede as sede, c.nombre as ciudad, c.codigociudad, ca.idnotaclinicarespuesta, p3.idusuario, ca.idusuarioresidente,  ca.fechaactualizacionusuarioresidente, md.nombre as motivo_devolucion,
             cup.codigo as cup_codigo, cup.descripcion as cup_descripcion, ca.fechaautorizacion, ca.numeroautorizacion, ca.idusuarioautorizador, ca.idestadoautorizacioncupanexo3"))
-            ->table(Manager::raw("visita as v")
+            ->table(Manager::raw("visita as v"))
             ->join("encuentro as e", "v.idvisita", "=", "e.idvisita")
             ->join("anexo3 as a", "e.idencuentro", "=",  "a.idanexo3")
             ->join("cupanexo3 as ca", "a.idanexo3", "=", "ca.idanexo3")
