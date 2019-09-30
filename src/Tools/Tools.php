@@ -409,7 +409,7 @@ class Tools
                 ->whereIn(
                     "notaclinica.idnotaclinica", $ids
                 )
-                ->where("notaclinica.fecha", ">=", $fecha)
+                ->where("notaclinica.fechacreacion", ">=", $fecha)
                 ->select(Manager::raw($select))
                 ->first();
         } else {
