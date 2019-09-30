@@ -434,7 +434,7 @@ class Tools
                 ->whereIn(
                     "notaclinica.idnotaclinica", $ids
                 )
-                ->where("notaclinica.fecha", ">=", $fecha)
+                ->where("notaclinica.fechacreacion", ">=", $fecha)
                 ->groupBy(Manager::raw($groupby))
                 ->orderByRaw(Manager::raw($orderby))
                 ->get()->toArray();
