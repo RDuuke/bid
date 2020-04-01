@@ -52,14 +52,13 @@ return [
         'db_telemedicina' => [
             'driver' => 'pgsql',
             'host' => getenv("DB_HOST_TELEMEDICINA"),
-            'database' => getenv("DB_NAME_TELEMEDICINA"),
-            'username' => getenv("DB_USER_TELEMEDICINA"),
-            'password' => getenv("DB_PASSWORD_TELEMEDICINA"),
+            'database' => 'LivingLabTransaccional',
+            'username' => 'postgres',
+            'password' => '*Living.2020+',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
             'sslmode' => 'allow',
-            'port' => getenv("DB_PORT_TELEMEDICINA"),
             'options' => [\PDO::ATTR_EMULATE_PREPARES => true],
         ]
     ],

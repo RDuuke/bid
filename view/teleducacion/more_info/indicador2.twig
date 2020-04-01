@@ -13,8 +13,8 @@
             {% for c in courses %}
                 <tr>
                     <td>{{ c.codigo }}</td>
-                    <td>{{ c.nombre }}</td>
-                    <td>{{ c.fecha }}</td>
+                    <td>{{ c.nombre | capitalize }}</td>
+                    <td>{{ c.fecha | date("m/d/Y")}}</td>
                 </tr>
             {% endfor %}
             </tbody>

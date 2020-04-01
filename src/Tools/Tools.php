@@ -134,7 +134,6 @@ class Tools
             ->groupBy("oferta.fechaCertificacion")
             ->orderBy("oferta.fechaCertificacion")
             ->get()->toArray();
-
         $mooc = Manager::connection("db_abiertas_moodle")
             ->table("mdl_course")
             ->join("mdl_context", "mdl_context.instanceid", "=", "mdl_course.id")
@@ -143,13 +142,13 @@ class Tools
             ->join("mdl_grade_grades", "mdl_grade_grades.userid", "=", "mdl_user.id")
             ->join("mdl_grade_items", "mdl_grade_items.id", "=", "mdl_grade_grades.itemid")
             ->join("mdl_course_categories", "mdl_course_categories.id", "=", "mdl_course.category")
-            ->select(Manager::raw("CONCAT(YEAR(FROM_UNIXTIME(mdl_grade_items.timemodified)), '-',DATE_FORMAT(FROM_UNIXTIME(mdl_grade_items.timemodified), \"%m\")) AS \"ano_mes\", count(mdl_grade_items.timemodified) AS Total"))
+            ->select(Manager::raw("CONCAT(YEAR(FROM_UNIXTIME(mdl_grade_grades.timemodified)),'-',MONTH(FROM_UNIXTIME(mdl_grade_grades.timemodified))) AS ano_mes, count(mdl_grade_items.timemodified) AS Total"))
             ->where("mdl_grade_items.courseid", "=", \Illuminate\Database\Capsule\Manager::raw("mdl_course.id"))
             ->where("mdl_grade_items.itemtype", "=",'course')
             ->where("mdl_role_assignments.roleid", 5)
             ->where("mdl_grade_grades.finalgrade", ">=", '3.0')
             ->where("mdl_grade_items.timemodified", ">=", $fecha)
-            ->groupBy(Manager::raw("MONTH(FROM_UNIXTIME(mdl_grade_items.timemodified)), YEAR(FROM_UNIXTIME(mdl_grade_items.timemodified))"))
+            ->groupBy(Manager::raw("ano_mes"))
             ->get()->toArray();
         $total = array_merge($extension, $mooc);
         $total = sort_by_orden($total);
@@ -163,13 +162,11 @@ class Tools
             ->table("certificado")
             ->leftJoin("oferta", "oferta.ofertaId", "=", "certificado.ofertaId")
             ->leftJoin("curso", "curso.cursoId", "=", "oferta.cursoId")
-            ->select(Manager::raw("CONCAT(curso.nombreCurso, \" \", curso.nombreAuxiliar) AS \"curso\", COUNT(certificado.ofertaId) AS \"eae\", CONCAT(\"Extensión\") as \"origen\" "))
+            ->select(Manager::raw("CONCAT(curso.nombreCurso, \" \", curso.nombreAuxiliar) AS \"curso\", COUNT(certificado.ofertaId) AS \"eae\", CONCAT('Extensión') as origen"))
             ->whereIn("curso.codigoCurso", ExtensionCourses::all("codigo")->toArray())
             ->where("oferta.fechaCertificacion", ">=", $fecha)
-            ->groupBy("oferta.fechaCertificacion")
-            ->orderBy("oferta.fechaCertificacion")
+            ->groupBy("curso")
             ->get()->toArray();
-
         $mooc = Manager::connection("db_abiertas_moodle")
             ->table("mdl_course")
             ->join("mdl_context", "mdl_context.instanceid", "=", "mdl_course.id")

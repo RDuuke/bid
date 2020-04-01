@@ -8,7 +8,7 @@ class ExtensionCourses extends Model
     protected $table = "cursos_extension";
 
     protected $fillable = [
-      "codigo", "nombre"
+      "codigo", "nombre", "fecha"
     ];
 
     public $timestamps = false;

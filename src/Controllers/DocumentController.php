@@ -18,6 +18,7 @@ use Slim\Http\Request;
 use Slim\Http\Stream;
 use Twig\Util\TemplateDirIterator;
 
+
 class DocumentController extends Controller
 {
     protected $creators = [];
@@ -87,12 +88,14 @@ class DocumentController extends Controller
         $data = $this->File($request);
         if(truncateTable("cursos_extension")) {
             for($i = 1; $i < count($data); $i ++) {
-                if (ExtensionCourses::updateOrCreate(["codigo" => $data[$i][0]], ["codigo" => $data[$i][0], "nombre" => $data[$i][1]])) {
+
+			if (ExtensionCourses::updateOrCreate(["codigo" => $data[$i][0]], ["codigo" => $data[$i][0], "nombre" => $data[$i][1], "fecha" => gmdate("Y-m-d",$data[$i][2])])) {
                     array_push($this->creators, $data[$i]);
                 } else {
                     array_push($this->errors, $data[$i]);
                 }
             }
+			die;
             return $this->view->render($response, "administrator/home.twig", [
                 "data" => [
                     "errors" => [
@@ -106,7 +109,7 @@ class DocumentController extends Controller
                 ],
                 "code" => 200,
                 "message" => "Upload archive csv.",
-                "title_table" => "Cargar archivo de cursos"
+                "title_table" => "Cargar archivo de cursos"	
             ]);
         }
         return $this->view->render($response, "administrator/home.twig", [
@@ -383,7 +386,7 @@ class DocumentController extends Controller
             ->withBody($stream);
     }
 
-    protected  function File(Request $request)
+    protected function File(Request $request)
     {
 
         $uploadFiles = $request->getUploadedFiles();

@@ -52,6 +52,7 @@ class TeleducacionController extends Controller
     {
         $data = Tools::teleducacion_indicador_more_1();
         $month = [];
+
         foreach (array_keys($data) as $key) {
             $carbon = new Carbon($key, "America/Bogota");
             array_push($month, getMothSpanish($carbon->format("F Y")));
