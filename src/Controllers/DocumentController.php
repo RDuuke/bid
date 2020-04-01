@@ -86,6 +86,8 @@ class DocumentController extends Controller
     function upLoadExtensionCourses (Request $request, Response $response)
     {
         $data = $this->File($request);
+        print_r($data);
+        die;
         if(truncateTable("cursos_extension")) {
             for($i = 1; $i < count($data); $i ++) {
 
@@ -95,7 +97,7 @@ class DocumentController extends Controller
                     array_push($this->errors, $data[$i]);
                 }
             }
-			die;
+
             return $this->view->render($response, "administrator/home.twig", [
                 "data" => [
                     "errors" => [
