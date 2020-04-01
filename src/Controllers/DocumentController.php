@@ -86,11 +86,11 @@ class DocumentController extends Controller
     function upLoadExtensionCourses (Request $request, Response $response)
     {
         $data = $this->File($request);
-        print_r($data);
-        die;
+        echo "<pre>";
         if(truncateTable("cursos_extension")) {
             for($i = 1; $i < count($data); $i ++) {
-
+                print_r(implode(",", $data[$i][0]));
+                continue;
 			if (ExtensionCourses::updateOrCreate(["codigo" => $data[$i][0]], ["codigo" => $data[$i][0], "nombre" => $data[$i][1], "fecha" => gmdate("Y-m-d",$data[$i][2])])) {
                     array_push($this->creators, $data[$i]);
                 } else {
