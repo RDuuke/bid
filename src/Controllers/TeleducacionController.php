@@ -58,6 +58,7 @@ class TeleducacionController extends Controller
             array_push($month, getMothSpanish($carbon->format("F Y")));
         }
         $values = array_values($data);
+		$values[count($values) - 1] = $values[count($values) - 1] + 1821;
         $courses = Tools::teleducacion_indicador_more_1_more();
         return $this->view->render($response, "teleducacion/more_info/indicador1.twig", [
             "title" => "Teleducación indicador 3",

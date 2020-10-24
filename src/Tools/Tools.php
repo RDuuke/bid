@@ -4,6 +4,7 @@ namespace Bid\Tools;
 
 
 use Bid\Models\ExtensionCourses;
+use Bid\Models\ExtensionCoursesExterno;
 use Bid\Models\TeleasisAlgorithms;
 use Bid\Models\TeleasisCallManagement;
 use Bid\Models\TeleasisPatients;
@@ -71,7 +72,7 @@ class Tools
             ->select(\Illuminate\Database\Capsule\Manager::raw("count(*) as total"))
             ->leftJoin("oferta", "oferta.ofertaId", "=", "certificado.ofertaId")
             ->leftJoin("curso", "curso.cursoId", "=", "oferta.cursoId")
-            ->whereIn("curso.codigoCurso", ExtensionCourses::all("codigo")->toArray())->first();
+            ->whereIn("curso.codigoCurso", ['1110-2728','1145-2858','1109-3927','173502','180598','178717','181746','173658','182662','173640','187372','1421-5335','1421-5336','1421-5337'])->first();
 
         return $profesional->total;
     }
@@ -89,9 +90,10 @@ class Tools
 
         return $valor1->total + $valor2;
     }
+	/*Temporalmente se quema el valor 1821 que corresponde a estudiantes certificados por curso COVID. Esta cifra no esta en la BD de Extension*/
     static function teleducacion_indicador_1()
     {
-        $total = self::estudiantes() + self::profesionales();
+        $total = self::estudiantes() + self::profesionales() + 1821;
 
         return [
             "total" => $total,
@@ -124,16 +126,45 @@ class Tools
     static function teleducacion_indicador_more_1()
     {
         $fecha = "2018-04-30 00:00:00";
+		/*
         $extension = Manager::connection("db_extension")
             ->table("certificado")
             ->leftJoin("oferta", "oferta.ofertaId", "=", "certificado.ofertaId")
             ->leftJoin("curso", "curso.cursoId", "=", "oferta.cursoId")
             ->select(Manager::raw("DATE_FORMAT(oferta.fechaCertificacion, \"%Y-%m\") AS \"ano_mes\", count(oferta.fechaCertificacion) AS Total"))
-            ->whereIn("curso.codigoCurso", ExtensionCourses::all("codigo")->toArray())
+            ->whereIn("curso.codigoCurso", ['1110-2728','1145-2858','1109-3927','173502','180598','178717','181746','173658','182662','173640','187372','1421-5335','1421-5336','1421-5337'])
             ->where("oferta.fechaCertificacion", ">=", $fecha)
             ->groupBy("oferta.fechaCertificacion")
             ->orderBy("oferta.fechaCertificacion")
             ->get()->toArray();
+			*/
+			 $extension = \Illuminate\Database\Capsule\Manager::connection("db_extension")
+            ->table("certificado")
+            ->select(Manager::raw("DATE_FORMAT(oferta.fechaCertificacion, \"%Y-%m\") AS \"ano_mes\", count(oferta.fechaCertificacion) AS Total"))
+            ->leftJoin("oferta", "oferta.ofertaId", "=", "certificado.ofertaId")
+            ->leftJoin("curso", "curso.cursoId", "=", "oferta.cursoId")
+            ->whereIn("curso.codigoCurso", ['1110-2728','1145-2858','1109-3927','173502','180598','178717','181746','173658','182662','173640','187372','1421-5335','1421-5336','1421-5337'])
+			->where("oferta.fechaCertificacion", ">=", $fecha)
+            ->groupBy("oferta.fechaCertificacion")
+            ->orderBy("oferta.fechaCertificacion")
+			->get()->toArray();
+
+			$mooc = \Illuminate\Database\Capsule\Manager::connection("db_abiertas_moodle")
+            ->table("mdl_course")
+            ->select(Manager::raw("CONCAT(YEAR(FROM_UNIXTIME(mdl_grade_grades.timemodified)),'-',MONTH(FROM_UNIXTIME(mdl_grade_grades.timemodified))) AS ano_mes, count(mdl_grade_items.timemodified) AS Total"))
+            ->join("mdl_context", "mdl_context.instanceid", "=", "mdl_course.id")
+            ->join("mdl_role_assignments", "mdl_role_assignments.contextid", "=", "mdl_context.id")
+            ->join("mdl_user", "mdl_user.id", "=", "mdl_role_assignments.userid")
+            ->join("mdl_grade_grades", "mdl_grade_grades.userid", "=", "mdl_user.id")
+            ->join("mdl_grade_items", "mdl_grade_items.id", "=", "mdl_grade_grades.itemid")
+            ->join("mdl_course_categories", "mdl_course_categories.id", "=", "mdl_course.category")
+            ->where("mdl_grade_items.courseid", "=", \Illuminate\Database\Capsule\Manager::raw("mdl_course.id"))
+            ->where("mdl_grade_items.itemtype", "=",'course')
+            ->where("mdl_role_assignments.roleid", 5)
+            ->where("mdl_grade_grades.finalgrade", ">=", '3.0')
+            ->where("mdl_grade_items.timemodified", ">=", $fecha)
+			->groupBy(Manager::raw("ano_mes"))
+            ->get()->toArray();/*
         $mooc = Manager::connection("db_abiertas_moodle")
             ->table("mdl_course")
             ->join("mdl_context", "mdl_context.instanceid", "=", "mdl_course.id")
@@ -150,7 +181,9 @@ class Tools
             ->where("mdl_grade_items.timemodified", ">=", $fecha)
             ->groupBy(Manager::raw("ano_mes"))
             ->get()->toArray();
+			*/
         $total = array_merge($extension, $mooc);
+
         $total = sort_by_orden($total);
         return $total;
     }
@@ -158,15 +191,16 @@ class Tools
     static function teleducacion_indicador_more_1_more()
     {
         $fecha = "2018-04-30 00:00:00";
-        $extension = Manager::connection("db_extension")
+    
+		$extension = Manager::connection("db_extension")
             ->table("certificado")
             ->leftJoin("oferta", "oferta.ofertaId", "=", "certificado.ofertaId")
             ->leftJoin("curso", "curso.cursoId", "=", "oferta.cursoId")
-            ->select(Manager::raw("CONCAT(curso.nombreCurso, \" \", curso.nombreAuxiliar) AS \"curso\", COUNT(certificado.ofertaId) AS \"eae\", CONCAT('Extensión') as origen"))
-            ->whereIn("curso.codigoCurso", ExtensionCourses::all("codigo")->toArray())
+            ->select(Manager::raw("CONCAT(curso.nombreCurso, \" \", curso.nombreAuxiliar) AS \"curso\", COUNT(certificado.ofertaId) AS profesionales_capacitados, CONCAT('Extensión') as origen"))
+            ->whereIn("curso.codigoCurso", ['1110-2728','1145-2858','1109-3927','173502','180598','178717','181746','173658','182662','173640','187372','1421-5335','1421-5336','1421-5337'])
             ->where("oferta.fechaCertificacion", ">=", $fecha)
-            ->groupBy("curso")
-            ->get()->toArray();
+            ->groupBy("curso")->get()->toArray();	
+
         $mooc = Manager::connection("db_abiertas_moodle")
             ->table("mdl_course")
             ->join("mdl_context", "mdl_context.instanceid", "=", "mdl_course.id")
@@ -175,14 +209,14 @@ class Tools
             ->join("mdl_grade_grades", "mdl_grade_grades.userid", "=", "mdl_user.id")
             ->join("mdl_grade_items", "mdl_grade_items.id", "=", "mdl_grade_grades.itemid")
             ->join("mdl_course_categories", "mdl_course_categories.id", "=", "mdl_course.category")
-            ->select(Manager::raw("mdl_course.id AS \"idcurso\", mdl_course.fullname AS \"curso\", COUNT(mdl_course.id) AS \"eae\", CONCAT(\"MOOC - Aulas Abiertas\") as \"origen\" "))
+            ->select(Manager::raw("mdl_course.id AS \"idcurso\", mdl_course.fullname AS \"curso\", COUNT(mdl_course.id) AS \"profesionales_capacitados\", CONCAT(\"MOOC - Aulas Abiertas\") as \"origen\" "))
             ->where("mdl_grade_items.courseid", "=", \Illuminate\Database\Capsule\Manager::raw("mdl_course.id"))
             ->where("mdl_grade_items.itemtype", "=",'course')
             ->where("mdl_role_assignments.roleid", 5)
             ->where("mdl_grade_grades.finalgrade", ">=", '3.0')
             ->where("mdl_grade_items.timemodified", ">=", $fecha)
-            ->groupBy(Manager::raw("mdl_course.id"))
-            ->get()->toArray();
+            ->groupBy(Manager::raw("mdl_course.id"))->get()->toArray();
+
         $total = array_merge($mooc, $extension);
         return $total;
     }
@@ -296,7 +330,7 @@ class Tools
         $enfermedades = Manager::connection("db_telemedicina")
             ->table("notaclinica")
             ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")
-            ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuario")
+            ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuarioactualizacion")
             ->join("cupanexo3", "cupanexo3.idnotaclinicarespuesta", "=", "notaclinica.idnotaclinica")
             ->join("anexo3", "anexo3.idanexo3", "=", "cupanexo3.idanexo3")
             ->join("encuentro", "encuentro.idencuentro", "=", "cupanexo3.idanexo3")
@@ -342,7 +376,7 @@ class Tools
         $patients = Manager::connection("db_telemedicina")
             ->table("notaclinica")
             ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")
-            ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuario")
+            ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuarioactualizacion")
             ->join("cupanexo3", "cupanexo3.idnotaclinicarespuesta", "=", "notaclinica.idnotaclinica")
             ->join("anexo3", "anexo3.idanexo3", "=", "cupanexo3.idanexo3")
             ->join("encuentro", "encuentro.idencuentro", "=", "cupanexo3.idanexo3")
@@ -384,7 +418,7 @@ class Tools
             $patients = Manager::connection("db_telemedicina")
                 ->table("notaclinica")
                 ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")
-                ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuario")
+                ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuarioactualizacion")
                 ->join("cupanexo3", "cupanexo3.idnotaclinicarespuesta", "=", "notaclinica.idnotaclinica")
                 ->join("anexo3", "anexo3.idanexo3", "=", "cupanexo3.idanexo3")
                 ->join("encuentro", "encuentro.idencuentro", "=", "cupanexo3.idanexo3")
@@ -408,7 +442,7 @@ class Tools
             $patients = Manager::connection("db_telemedicina")
                 ->table("notaclinica")
                 ->join("cie10", "cie10.idcie10", "=", "notaclinica.idcie10principal")
-                ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuario")
+                ->join("usuario", "usuario.idusuario", "=", "notaclinica.idusuarioactualizacion")
                 ->join("cupanexo3", "cupanexo3.idnotaclinicarespuesta", "=", "notaclinica.idnotaclinica")
                 ->join("anexo3", "anexo3.idanexo3", "=", "cupanexo3.idanexo3")
                 ->join("encuentro", "encuentro.idencuentro", "=", "cupanexo3.idanexo3")

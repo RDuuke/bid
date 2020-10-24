@@ -15,13 +15,14 @@
                 $reader->setDelimiter(";");
                 $reader->setEnclosure('');
             } else {
-                $reader = IOFactory::createReader('Xlsx');
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
             }
             $reader->setReadDataOnly(true);
 
             $spreadsheet = $reader->load($filename);
 
             $whorsheet = $spreadsheet->getActiveSheet();
+		
             return (object) ["highestRow" => count($whorsheet->toArray()), "whorsheet" => $whorsheet->toArray()];
         } catch (\Exception $exception)
         {
@@ -104,7 +105,7 @@
 
     function truncateTable(string $table)
     {
-		return true;
+		
         $pdo = Manager::connection()->getPdo();
         if(!$pdo->query("TRUNCATE TABLE {$table}")) {
             return false;

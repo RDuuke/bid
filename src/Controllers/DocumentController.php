@@ -31,7 +31,8 @@ class DocumentController extends Controller
         if ($archive->getError() == UPLOAD_ERR_OK) {
             $filename = moveUploadFile($archive);
              if (is_string($filename)) {
-                 $data = getDataOfArchive($filename);
+                 $data = getDataOfArchive($filename, 'Xlsx');
+				
                  if (truncateTable("teledu_interacciones")) {
                      for ($row = 1; $row < $data->highestRow; $row ++) {
                          $value = [
@@ -41,7 +42,7 @@ class DocumentController extends Controller
                              "atulado" => $data->whorsheet[$row][3],
                              "fb_live" => $data->whorsheet[$row][4]
                          ];
-
+		
                          if (TeleduInterracion::create($value)) {
                              array_push($this->creators, $value);
                          } else {
@@ -86,15 +87,12 @@ class DocumentController extends Controller
     function upLoadExtensionCourses (Request $request, Response $response)
     {
         $data = $this->File($request);
-        echo "<pre>";
         if(truncateTable("cursos_extension")) {
-            for($i = 1; $i < count($data); $i ++) {
-                print_r(implode(",", $data[$i][0]));
-                continue;
-			if (ExtensionCourses::updateOrCreate(["codigo" => $data[$i][0]], ["codigo" => $data[$i][0], "nombre" => $data[$i][1], "fecha" => gmdate("Y-m-d",$data[$i][2])])) {
-                    array_push($this->creators, $data[$i]);
+            for($i = 1; $i < count($data); $i ++) {				
+			if (ExtensionCourses::updateOrCreate(["codigo" => $data[$i][0]], ["codigo" => $data[$i][0], "nombre" => $data[$i][1], "fecha" => $data[$i][2]])) {
+                    array_push($this->creators, $d[$i]);
                 } else {
-                    array_push($this->errors, $data[$i]);
+                    array_push($this->errors, $d[$i]);
                 }
             }
 
@@ -114,6 +112,7 @@ class DocumentController extends Controller
                 "title_table" => "Cargar archivo de cursos"	
             ]);
         }
+
         return $this->view->render($response, "administrator/home.twig", [
             "data" => [
                 "errors" => [
@@ -134,6 +133,7 @@ class DocumentController extends Controller
     function uploadAlgorithms(Request $request, Response $response)
     {
         $data = $this->File($request);
+
         if (truncateTable("teleasis_algoritmos")) {
 
             for ($i = 1; $i < count($data); $i++) {
@@ -183,8 +183,10 @@ class DocumentController extends Controller
         if (truncateTable("teleasis_pacientes")) {
 
             for ($i = 1; $i < count($data); $i++) {
-                if (TeleasisPatients::updateOrCreate(["patalogia" => $data[$i][0]],
-                    ["patalogia" => $data[$i][0], "num_pacientes" => $data[$i][1]])) {
+				if($data[$i][0] ==  ""){
+										conitue;
+					};
+                if (TeleasisPatients::create(["patalogia" => $data[$i][0], "num_pacientes" => $data[$i][1]])) {
                     array_push($this->creators, $data[$i]);
                 } else {
                     array_push($this->errors, $data[$i]);
@@ -226,6 +228,7 @@ class DocumentController extends Controller
     function uploadCallManagement(Request $request, Response $response)
     {
         $data = $this->File($request);
+	
         if (truncateTable("teleasis_gestion_llamadas")) {
 
             for ($i = 1; $i < count($data); $i++) {

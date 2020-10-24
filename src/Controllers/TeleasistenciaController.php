@@ -52,11 +52,18 @@ class TeleasistenciaController extends Controller
         }
         $g = TeleasisCallManagement::all(["periodo", "num_llamadas_gestionadas"])->toArray();
         $call_g = [];
+		$i =0;
         foreach ($g as $k => $value) {
             $date = implode("-", array_reverse(explode("/", $value["periodo"])));
-
-            $carbon = new Carbon($date, "America/Bogota");
-            array_push($call_g, [getMothSpanish($carbon->format("F Y")), $value["num_llamadas_gestionadas"]]);
+		
+			$carbon = new Carbon($date, "America/Bogota");
+			if (isset($call_g[$i][getMothSpanish($carbon->format("F Y"))])) {
+				$call_g[getMothSpanish($carbon->format("d F Y"))] = $call_g[getMothSpanish($carbon->format("F Y"))] + $value["num_llamadas_gestionadas"];
+			} else {
+				array_push($call_g, [getMothSpanish($carbon->format("F Y")), $value["num_llamadas_gestionadas"]]);
+			}
+				
+            
         }
 
         $o = TeleasisCallManagement::select(Manager::raw("SUM(llamada_saludable) as \"LLAMADA INTERACTIVA\", 
